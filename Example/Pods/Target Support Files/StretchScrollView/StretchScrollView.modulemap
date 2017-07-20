@@ -1,0 +1,6 @@
+framework module StretchScrollView {
+  umbrella header "StretchScrollView-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,5 +1,5 @@
 #
-# Be sure to run `pod lib lint StretchScrollView.podspec' to ensure this is a
+# Be sure to run `pod lib lint StretchScrollView.podspec` to ensure this is a
 # valid spec before submitting.
 #
 # Any lines starting with a # are optional, but their use is encouraged
@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
   s.name             = 'StretchScrollView'
   s.version          = '1.0.0'
-  s.summary          = 'A short description of StretchScrollView.'
+  s.summary          = 'ScrollView that allows to stretch it`s image'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-TODO: Add long description of the pod here.
+StretchScrollView provides functionality to enlarge title image and hide overlays when scrolling down. When scrolling up it allows to animate background of navigation bar.
                        DESC
 
   s.homepage         = 'https://github.com/APUtils/StretchScrollView'
@@ -38,5 +38,6 @@ TODO: Add long description of the pod here.
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   s.frameworks = 'Foundation', 'UIKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
+  s.dependency 'APExtensions'
+  s.dependency 'BaseClasses'
 end

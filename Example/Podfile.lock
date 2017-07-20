@@ -1,0 +1,42 @@
+PODS:
+  - APExtensions (2.0.0)
+  - BaseClasses (1.0.0)
+  - FBSnapshotTestCase (2.1.4):
+    - FBSnapshotTestCase/SwiftSupport (= 2.1.4)
+  - FBSnapshotTestCase/Core (2.1.4)
+  - FBSnapshotTestCase/SwiftSupport (2.1.4):
+    - FBSnapshotTestCase/Core
+  - Nimble (7.0.1)
+  - Nimble-Snapshots (6.2.1):
+    - Nimble-Snapshots/Core (= 6.2.1)
+  - Nimble-Snapshots/Core (6.2.1):
+    - FBSnapshotTestCase (~> 2.0)
+    - Nimble (~> 7.0)
+  - Quick (1.1.0)
+  - StretchScrollView (1.0.0):
+    - APExtensions
+    - BaseClasses
+
+DEPENDENCIES:
+  - FBSnapshotTestCase
+  - Nimble
+  - Nimble-Snapshots
+  - Quick
+  - StretchScrollView (from `../`)
+
+EXTERNAL SOURCES:
+  StretchScrollView:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  APExtensions: 66f6ffb508a203d5c8fa7c7acb2f924776818f51
+  BaseClasses: de97e91d9914ce1893da5d214eb055718848032c
+  FBSnapshotTestCase: '094f9f314decbabe373b87cc339bea235a63e07a'
+  Nimble: 657d000e11df8aebe27cdaf9d244de7f30ed87f7
+  Nimble-Snapshots: 31c8ef7fcebf0e68b4dff83f6e2160813a4a116b
+  Quick: dafc587e21eed9f4cab3249b9f9015b0b7a7f71d
+  StretchScrollView: 96a0711b08a04d51296426da8d6842d416ce290b
+
+PODFILE CHECKSUM: 94a96a343509bbeddd31b400fb13f378b0189376
+
+COCOAPODS: 1.2.1

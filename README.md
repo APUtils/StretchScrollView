@@ -5,7 +5,7 @@
 [![License](https://img.shields.io/cocoapods/l/StretchScrollView.svg?style=flat)](http://cocoapods.org/pods/StretchScrollView)
 [![Platform](https://img.shields.io/cocoapods/p/StretchScrollView.svg?style=flat)](http://cocoapods.org/pods/StretchScrollView)
 
-TODO
+StretchScrollView provides functionality to enlarge title image and hide overlays when scrolling down. When scrolling up it allows to animate background of navigation bar.
 
 ## Example
 
@@ -13,7 +13,7 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 ## GIF animation
 
-TODO
+<img src="Example/StretchScrollView/StretchScrollView.gif"/>
 
 ## Installation
 
@@ -28,9 +28,18 @@ pod 'StretchScrollView'
 
 ## Usage
 
-TODO
+Assign `StretchScrollView` class to your UIScrollView in storyboard.
 
-See example project for more details.
+<img src="Example/StretchScrollView/customClass.png"/>
+
+Set needed outlets and options.
+
+<img src="Example/StretchScrollView/outlets.png"/>
+<img src="Example/StretchScrollView/options.png"/>
+
+You are done!
+
+Please note that you have to make your navigation bar fully transparent if you want to change it's background color. See example project for more details.
 
 ## Contributions
 

@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="zFK-lg-y3j">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Sarah Kerrigan-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="StretchScrollView_Example" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -19,11 +20,98 @@
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F35-nS-UQX" customClass="StretchScrollView" customModule="StretchScrollView">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hTq-a3-92Z" userLabel="Content View">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="293"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sarah" translatesAutoresizingMaskIntoConstraints="NO" id="KAu-vK-n8l">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="240"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="240" id="gjd-EP-5Nk"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="StarCraft" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HFZ-aw-RY2">
+                                                <rect key="frame" x="89" y="90" width="196.5" height="60"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="50"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qAd-dy-4ZT">
+                                                <rect key="frame" x="16" y="256" width="343" height="21"/>
+                                                <mutableString key="text">StarCraft is a military science fiction media franchise created by Chris Metzen and James Phinney, and owned by Blizzard Entertainment. The series, set in the beginning of the 26th century, centers on a galactic struggle for dominance among four species—the adaptable and mobile Terrans, the ever-evolving insectoid Zerg, the powerfully enigmatic Protoss, and the "god-like" Xel'Naga creator race—in a distant part of the Milky Way galaxy known as the Koprulu Sector. The series debuted with the video game StarCraft in 1998. Since then it has grown to include a number of other games as well as eight novelizations, two Amazing Stories articles, a board game, and other licensed merchandise such as collectible statues and toys.</mutableString>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="KAu-vK-n8l" firstAttribute="leading" secondItem="hTq-a3-92Z" secondAttribute="leading" id="62e-Jz-h4z"/>
+                                            <constraint firstItem="HFZ-aw-RY2" firstAttribute="centerY" secondItem="KAu-vK-n8l" secondAttribute="centerY" id="9xi-R2-ntM"/>
+                                            <constraint firstAttribute="trailing" secondItem="qAd-dy-4ZT" secondAttribute="trailing" constant="16" id="MBb-Ps-GQN"/>
+                                            <constraint firstAttribute="bottom" secondItem="qAd-dy-4ZT" secondAttribute="bottom" constant="16" id="UL1-2W-fT0"/>
+                                            <constraint firstItem="qAd-dy-4ZT" firstAttribute="top" secondItem="KAu-vK-n8l" secondAttribute="bottom" constant="16" id="aSX-pW-rej"/>
+                                            <constraint firstItem="qAd-dy-4ZT" firstAttribute="leading" secondItem="hTq-a3-92Z" secondAttribute="leading" constant="16" id="daQ-AJ-eUt"/>
+                                            <constraint firstItem="HFZ-aw-RY2" firstAttribute="centerX" secondItem="KAu-vK-n8l" secondAttribute="centerX" id="lft-Jh-KAS"/>
+                                            <constraint firstAttribute="trailing" secondItem="KAu-vK-n8l" secondAttribute="trailing" id="mAT-83-pM6"/>
+                                            <constraint firstItem="KAu-vK-n8l" firstAttribute="top" secondItem="hTq-a3-92Z" secondAttribute="top" id="vKR-GH-fb7"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="hTq-a3-92Z" firstAttribute="leading" secondItem="F35-nS-UQX" secondAttribute="leading" id="FKQ-ez-LR1"/>
+                                    <constraint firstItem="hTq-a3-92Z" firstAttribute="top" secondItem="F35-nS-UQX" secondAttribute="top" id="FYL-5y-YA5"/>
+                                    <constraint firstAttribute="trailing" secondItem="hTq-a3-92Z" secondAttribute="trailing" id="Ph6-oO-aJT"/>
+                                    <constraint firstAttribute="bottom" secondItem="hTq-a3-92Z" secondAttribute="bottom" id="bro-OI-aYl"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="navigationBackgroundColor">
+                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <outlet property="stretchedView" destination="KAu-vK-n8l" id="ejz-Xa-x8V"/>
+                                    <outletCollection property="fadeViews" destination="HFZ-aw-RY2" collectionClass="NSMutableArray" id="7xC-MV-rIq"/>
+                                </connections>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="F35-nS-UQX" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="NrX-vD-iII"/>
+                            <constraint firstItem="F35-nS-UQX" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="PxC-nd-GUv"/>
+                            <constraint firstAttribute="trailing" secondItem="F35-nS-UQX" secondAttribute="trailing" id="Zbd-kI-INo"/>
+                            <constraint firstAttribute="bottom" secondItem="F35-nS-UQX" secondAttribute="bottom" id="sck-DQ-1rv"/>
+                            <constraint firstItem="hTq-a3-92Z" firstAttribute="width" secondItem="kh9-bI-dsS" secondAttribute="width" id="x6M-GV-Dwr"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Sarah Kerrigan" id="nPi-2J-qCD"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="812" y="231"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="eWE-eB-fKI">
+            <objects>
+                <navigationController id="zFK-lg-y3j" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="EfE-Gf-yRm">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="vXZ-lx-hvc" kind="relationship" relationship="rootViewController" id="gmR-G6-alH"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KEa-Ds-TBd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="55" y="231"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="sarah" width="1024" height="768"/>
+    </resources>
 </document>
