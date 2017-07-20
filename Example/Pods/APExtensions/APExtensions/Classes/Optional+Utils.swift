@@ -13,6 +13,7 @@ import Foundation
 //-----------------------------------------------------------------------------
 
 public extension Optional where Wrapped: Collection {
+    /// Check if object is nil or empty
     public var isNilOrEmpty: Bool {
         if let value = self, !value.isEmpty {
             return false
@@ -33,6 +34,7 @@ public protocol EmptyString {
 extension String: EmptyString {}
 
 public extension Optional where Wrapped: EmptyString {
+    /// Check if object is nil or empty
     public var isNilOrEmpty: Bool {
         if let value = self, !value.isEmpty {
             return false

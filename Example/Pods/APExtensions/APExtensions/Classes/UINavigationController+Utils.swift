@@ -10,6 +10,7 @@ import UIKit
 
 
 public extension UINavigationController {
+    /// Root view controller
     public var rootViewController: UIViewController {
         get {
             return viewControllers.first!

@@ -1,5 +1,5 @@
 //
-//  ClassNameProtocol.swift
+//  ClassName.swift
 //  APExtensions
 //
 //  Created by Anton Plebanovich on 6/8/17.
@@ -10,6 +10,7 @@ import Foundation
 
 /// Allows to get class name string
 public protocol ClassName {
+    /// Class name string
     @nonobjc static var className: String { get }
 }
 

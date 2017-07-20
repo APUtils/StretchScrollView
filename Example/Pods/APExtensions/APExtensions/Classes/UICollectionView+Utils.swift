@@ -15,11 +15,16 @@ public extension UICollectionView {
     // MARK: - Cell Nib
     //-----------------------------------------------------------------------------
     
+    /// Simplifies cell registration. Xib name must be the same as class name.
     public func registerNib(cellClass: ClassName.Type) {
         register(UINib(nibName: cellClass.className, bundle: nil), forCellWithReuseIdentifier: cellClass.className)
     }
     
-    public func dequeue<T: ClassName>(indexPath: IndexPath) -> T {
+    /// Simplifies cell dequeue. Specify type of variable on declaration so proper cell will be dequeued.
+    /// Example:
+    ///
+    ///     let cell: MyCell = collectionView.dequeue(indexPath)
+    public func dequeue<T: ClassName>(_ indexPath: IndexPath) -> T {
         return self.dequeueReusableCell(withReuseIdentifier: T.className, for: indexPath) as! T
     }
 }

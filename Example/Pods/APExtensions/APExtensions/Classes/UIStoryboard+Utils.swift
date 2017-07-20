@@ -10,6 +10,7 @@ import UIKit
 
 
 public extension UIStoryboard {
+    /// Instantiates initial view controller from storyboard
     public class func controller(storyboardName: String) -> UIViewController? {
         let storyboard = UIStoryboard(name: storyboardName, bundle: nil)
         let controller = storyboard.instantiateInitialViewController()

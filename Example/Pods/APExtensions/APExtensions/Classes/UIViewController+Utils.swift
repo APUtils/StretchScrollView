@@ -13,6 +13,7 @@ import UIKit
 //-----------------------------------------------------------------------------
 
 public extension UIViewController {
+    /// Previous view controller in navigation stack
     var previousViewController: UIViewController? {
         guard let navigationViewControllers = navigationController?.viewControllers else { return nil }
         
@@ -24,10 +25,16 @@ public extension UIViewController {
         }
     }
     
+    var isBeingRemoved: Bool {
+        return isMovingFromParentViewController || isBeingDismissed || (navigationController?.isBeingDismissed ?? false)
+    }
+    
+    /// Remove view controller animated action. Removes using pop if it was pushed or using dismiss if it was presented.
     @IBAction func removeViewController(sender: Any) {
         removeViewController(animated: true)
     }
     
+    /// Removes view controller using pop if it was pushed or using dismiss if it was presented.
     func removeViewController(animated: Bool) {
         if navigationController?.viewControllers.first == self {
             dismiss(animated: animated, completion: nil)

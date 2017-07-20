@@ -29,9 +29,29 @@ public extension UIScrollView {
         setBottomInset(49)
     }
     
+    /// Assures that contentOffset value is correct.
     public func clampContentOffset() {
         var newContentOffset = contentOffset
         newContentOffset.y = min(newContentOffset.y, contentSize.height - height)
         newContentOffset.y = min(newContentOffset.y, -contentInset.top)
+    }
+}
+
+//-----------------------------------------------------------------------------
+// MARK: - UIRefreshControl
+//-----------------------------------------------------------------------------
+
+@available(iOS 10.0, *)
+public extension UIScrollView {
+    /// Adds refresh control. Call finishRefresh() to stop.
+    public func addRefreshControl(target: AnyObject?, action: Selector) {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(target, action: action, for: .valueChanged)
+        self.refreshControl = refreshControl
+    }
+    
+    /// Stops refresh
+    public func finishRefresh() {
+        refreshControl?.endRefreshing()
     }
 }

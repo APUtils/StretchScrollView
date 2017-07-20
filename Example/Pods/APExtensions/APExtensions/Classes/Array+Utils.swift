@@ -10,6 +10,7 @@ import Foundation
 
 
 public extension Array {
+    /// Second element in array
     public var second: Element? {
         guard count > 1 else { return nil }
         

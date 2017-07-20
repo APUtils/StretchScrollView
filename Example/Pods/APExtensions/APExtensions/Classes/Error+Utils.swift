@@ -9,8 +9,9 @@
 import Foundation
 
 
-extension Error {
-    var isConnectError: Bool {
+public extension Error {
+    /// Checks if error is related to connection problems. Usual flow is to retry on those errors.
+    public var isConnectError: Bool {
         guard _domain == NSURLErrorDomain else { return false }
         
         return _code == NSURLErrorNotConnectedToInternet

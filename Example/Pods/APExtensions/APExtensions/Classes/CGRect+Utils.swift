@@ -10,6 +10,7 @@ import UIKit
 
 
 public extension CGRect {
+    /// Center point
     public var center: CGPoint {
         get {
             return CGPoint(x: midX, y: midY)

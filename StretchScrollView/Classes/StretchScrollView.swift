@@ -20,26 +20,6 @@ private let StatusBarHeight: CGFloat = 20
 private let NavigationBarHeight: CGFloat = 44
 
 //-----------------------------------------------------------------------------
-// MARK: - Helper Extension
-//-----------------------------------------------------------------------------
-
-/// Gets view's UIViewController.
-extension UIView {
-    public var viewController: UIViewController? {
-        var nextResponder: UIResponder? = self
-        while nextResponder != nil {
-            nextResponder = nextResponder?.next
-            
-            if let viewController = nextResponder as? UIViewController {
-                return viewController
-            }
-        }
-        
-        return nil
-    }
-}
-
-//-----------------------------------------------------------------------------
 // MARK: - Class Implementation
 //-----------------------------------------------------------------------------
 

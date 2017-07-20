@@ -12,6 +12,7 @@ import UIKit
 // MARK: - InstantiatableFromXib
 //-----------------------------------------------------------------------------
 
+/// Helps to instantiate object from xib file.
 public protocol InstantiatableFromXib {
     static func create() -> Self
 }
@@ -32,6 +33,7 @@ public extension InstantiatableFromXib where Self: NSObject {
 // MARK: - InstantiatableFromStoryboard
 //-----------------------------------------------------------------------------
 
+/// Helps to instantiate object from storyboard file.
 public protocol InstantiatableFromStoryboard: class {
     static func create() -> Self
     static func createWithNavigationController() -> UINavigationController
@@ -43,10 +45,14 @@ public extension InstantiatableFromStoryboard where Self: UIViewController {
         return UIStoryboard(name: storyboardName, bundle: nil).instantiateInitialViewController() as! T
     }
     
+    /// Instantiates view controller from storyboard file.
+    /// Storyboard filename should be equal to view controller class name without "ViewControler" postfix.
     public final static func create() -> Self {
         return controllerFromStoryboard()
     }
     
+    /// Instantiates view controller from storyboard file wrapped into navigation controller.
+    /// Storyboard filename should be equal to view controller class name without "ViewControler" postfix.
     public final static func createWithNavigationController() -> UINavigationController {
         let vc = create()
         let navigationVc = UINavigationController(rootViewController: vc)
@@ -59,6 +65,7 @@ public extension InstantiatableFromStoryboard where Self: UIViewController {
 // MARK: - InstantiatableContentView
 //-----------------------------------------------------------------------------
 
+/// Helps to instantiate content view from storyboard file.
 public protocol InstantiatableContentView {
     func createContentView() -> UIView
 }

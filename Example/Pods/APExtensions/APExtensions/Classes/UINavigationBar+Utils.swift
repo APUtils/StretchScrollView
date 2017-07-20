@@ -10,6 +10,7 @@ import UIKit
 
 
 public extension UINavigationBar {
+    /// Set navigation bar transparency
     public func setTransparent(_ isTransparent: Bool) {
         if isTransparent {
             isTranslucent = true
