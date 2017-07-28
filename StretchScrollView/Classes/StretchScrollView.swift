@@ -30,23 +30,6 @@ private let NavigationBarHeight: CGFloat = 44
 public class StretchScrollView: ScrollView {
     
     //-----------------------------------------------------------------------------
-    // MARK: - UIScrollView Properties
-    //-----------------------------------------------------------------------------
-    
-    public override var contentInset: UIEdgeInsets {
-        get {
-            return super.contentInset
-        }
-        set {
-            // Top content inset makes no sense for StretchScrollView so assure it's always 0.
-            var newContentInset = newValue
-            newContentInset.top = 0
-            
-            super.contentInset = newContentInset
-        }
-    }
-    
-    //-----------------------------------------------------------------------------
     // MARK: - @IBInspectable
     //-----------------------------------------------------------------------------
     
@@ -160,12 +143,12 @@ public class StretchScrollView: ScrollView {
     private func configureStretchedView() {
         guard let cstrImageViewTop = cstrImageViewTop, let cstrImageViewHeight = cstrImageViewHeight else { return }
         
-        let contentOffsetY = contentOffset.y
+        let compensatedContentOffsetY = contentOffset.y + contentInset.top
         
-        let newTopOffset = contentOffsetY
+        let newTopOffset = compensatedContentOffsetY
         cstrImageViewTop.constant = min(0, newTopOffset)
         
-        let newHeight = max(defaultHeight, defaultHeight - contentOffsetY)
+        let newHeight = max(defaultHeight, defaultHeight - compensatedContentOffsetY)
         cstrImageViewHeight.constant = newHeight
     }
     
@@ -173,10 +156,10 @@ public class StretchScrollView: ScrollView {
         // Assure it's on zero position
         navigationBar?.insertSubview(navigationBarBackgroundView, at: 0)
         
-        let contentOffsetY = contentOffset.y
+        let compensatedContentOffsetY = contentOffset.y + contentInset.top
         
         // Fade views and navigation bar
-        var newAlpha = (fadeOutOffset + contentOffsetY) / fadeOutOffset
+        var newAlpha = (fadeOutOffset + compensatedContentOffsetY) / fadeOutOffset
         newAlpha = max(0, newAlpha)
         newAlpha = min(1, newAlpha)
         _fadeViews.allObjects.forEach { $0.alpha = newAlpha }
@@ -186,7 +169,7 @@ public class StretchScrollView: ScrollView {
         let fadeInFinishDistance = NavigationFadeInFinishOffset
         let startFadeInDistance = min(fadeInFinishDistance, 0)
         let distance = fadeInFinishDistance - startFadeInDistance
-        var backgroundNewAlpha = (startFadeInDistance + contentOffsetY) / distance
+        var backgroundNewAlpha = (startFadeInDistance + compensatedContentOffsetY) / distance
         backgroundNewAlpha = max(0, backgroundNewAlpha)
         backgroundNewAlpha = min(1, backgroundNewAlpha)
         navigationBarBackgroundView.alpha = backgroundNewAlpha
