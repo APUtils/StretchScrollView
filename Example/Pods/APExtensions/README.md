@@ -28,16 +28,6 @@ pod 'APExtensions'
 
 ## Usage
 
-Call `Extensions.prepare()` before any extentions is used. Usually in application delegate method `didFinishLaunchingWithOptions`:
-
-```
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
-        APExtensions.prepare()
-        
-        return true
-    }
-```
-
 See example project for more details.
 
 ## Contributions

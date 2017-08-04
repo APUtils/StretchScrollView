@@ -75,7 +75,6 @@ public class StretchScrollView: ScrollView {
     }
     
     private func setup() {
-        APExtensions.prepare()
         setupProperties()
         setupNotifications()
         setupNavigationBar()

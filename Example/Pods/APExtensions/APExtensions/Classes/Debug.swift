@@ -3,7 +3,7 @@
 //  APExtensions
 //
 //  Created by Anton Plebanovich on 7/4/17.
-//  Copyright © Anton Plebanovich. All rights reserved.
+//  Copyright (c) 2017 Anton Plebanovich. All rights reserved.
 //
 
 import Foundation
