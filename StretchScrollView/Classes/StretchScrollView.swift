@@ -93,8 +93,8 @@ public class StretchScrollView: ScrollView {
     
     private func setupNavigationBar() {
         if manageNavigationBarTransparency {
-            navigationBar?.saveTransparencyState(replace: false)
-            navigationBar?.makeTransparent()
+            saveTransparencyState(replace: false)
+            makeTransparent()
             viewController?.automaticallyAdjustsScrollViewInsets = false
         }
         
@@ -201,17 +201,49 @@ public class StretchScrollView: ScrollView {
         navigationBarBackgroundView.alpha = 0
         
         if manageNavigationBarTransparency {
-            navigationBar?.restoreTransparencyState()
+            restoreTransparencyState()
         }
     }
     
     @objc private func onViewWillAppear(_ notification: Notification) {
         if manageNavigationBarTransparency {
-            navigationBar?.saveTransparencyState(replace: false)
-            navigationBar?.makeTransparent()
+            saveTransparencyState(replace: false)
+            makeTransparent()
         }
         
         configureVisibility()
+    }
+    
+    //-----------------------------------------------------------------------------
+    // MARK: - Private Methods - Transparency State
+    //-----------------------------------------------------------------------------
+    
+    struct TransparencyState {
+        let isTranslucent: Bool
+        let backgroundImage: UIImage?
+        let shadowImage: UIImage?
+    }
+    
+    private var transparencyState: TransparencyState?
+    
+    func saveTransparencyState(replace: Bool) {
+        guard replace || transparencyState == nil, let navigationBar = navigationBar else { return }
+        
+        transparencyState = TransparencyState(isTranslucent: navigationBar.isTranslucent, backgroundImage: navigationBar.backgroundImage(for: .default), shadowImage: navigationBar.shadowImage)
+    }
+    
+    func restoreTransparencyState() {
+        guard let transparencyState = transparencyState else { return }
+        
+        navigationBar?.isTranslucent = transparencyState.isTranslucent
+        navigationBar?.setBackgroundImage(transparencyState.backgroundImage, for: .default)
+        navigationBar?.shadowImage = transparencyState.shadowImage
+    }
+    
+    func makeTransparent() {
+        navigationBar?.isTranslucent = true
+        navigationBar?.setBackgroundImage(UIImage(), for: .default)
+        navigationBar?.shadowImage = UIImage()
     }
 }
 

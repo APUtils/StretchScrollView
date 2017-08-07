@@ -1,6 +1,6 @@
 PODS:
   - APExtensions (3.3.0)
-  - BaseClasses (1.1.0)
+  - BaseClasses (1.2.0)
   - FBSnapshotTestCase (2.1.4):
     - FBSnapshotTestCase/SwiftSupport (= 2.1.4)
   - FBSnapshotTestCase/Core (2.1.4)
@@ -32,7 +32,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   APExtensions: 0fa7e60c8ced5b343c9ad56b64cad39ab781794a
-  BaseClasses: 052d2db7f7435508e9a1a95f3914240168538484
+  BaseClasses: 84b5cc49b9333b8279cc4b4b4dd624505d2ee809
   FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
   Nimble: 657d000e11df8aebe27cdaf9d244de7f30ed87f7
   Nimble-Snapshots: 31c8ef7fcebf0e68b4dff83f6e2160813a4a116b

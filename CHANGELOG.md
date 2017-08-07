@@ -2,6 +2,14 @@
 All notable changes to this project will be documented in this file.
 `StretchScrollView` adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.0.1](https://github.com/APUtils/StretchScrollView/releases/tag/2.0.1)
+Released on 08/07/2017.
+
+#### Fixed
+- Fixed bug with transparent state save and restore
+- Example project crash fix
+  - Added by [Anton Plebanovich](https://github.com/anton-plebanovich).
+
 ## [2.0.0](https://github.com/APUtils/StretchScrollView/releases/tag/2.0.0)
 Released on 08/07/2017.
 
