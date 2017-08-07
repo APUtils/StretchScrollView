@@ -18,6 +18,7 @@ private let FadeOutOffset: CGFloat = 60
 private let NavigationFadeInFinishOffset: CGFloat = 60
 private let StatusBarHeight: CGFloat = 20
 private let NavigationBarHeight: CGFloat = 44
+private let TopBarsHeight: CGFloat = StatusBarHeight + NavigationBarHeight
 
 //-----------------------------------------------------------------------------
 // MARK: - Class Implementation
@@ -33,6 +34,11 @@ public class StretchScrollView: ScrollView {
     // MARK: - @IBInspectable
     //-----------------------------------------------------------------------------
     
+    /// StretchScrollView will manage navigation bar transparency by itself.
+    /// You could disable this option to manage it by yourself or to disable navigation bar animations.
+    @IBInspectable var manageNavigationBarTransparency: Bool = true
+    
+    /// In case of transparent navigation bar you may specify background color that will appear when you scroll up.
     @IBInspectable var navigationBackgroundColor: UIColor = .clear
     
     //-----------------------------------------------------------------------------
@@ -56,15 +62,6 @@ public class StretchScrollView: ScrollView {
     private var cstrImageViewTop: NSLayoutConstraint?
     private var cstrImageViewHeight: NSLayoutConstraint?
     private var defaultHeight: CGFloat = 0
-    private var ignoreStatusBarHeight: Bool = false
-    
-    private var topBarsHeight: CGFloat {
-        return ignoreStatusBarHeight ? NavigationBarHeight : StatusBarHeight + NavigationBarHeight
-    }
-    
-    private var fadeOutOffset: CGFloat {
-        return ignoreStatusBarHeight ? FadeOutOffset - StatusBarHeight : FadeOutOffset
-    }
     
     //-----------------------------------------------------------------------------
     // MARK: - Initialization and Setup
@@ -84,7 +81,6 @@ public class StretchScrollView: ScrollView {
     
     private func setupProperties() {
         delegate = self
-        contentInset = .zero
         
         fadeViews?.forEach({ _fadeViews.add($0) })
         fadeViews = nil
@@ -96,17 +92,16 @@ public class StretchScrollView: ScrollView {
     }
     
     private func setupNavigationBar() {
+        if manageNavigationBarTransparency {
+            navigationBar?.saveTransparencyState(replace: false)
+            navigationBar?.makeTransparent()
+            viewController?.automaticallyAdjustsScrollViewInsets = false
+        }
+        
         navigationBarBackgroundView.isUserInteractionEnabled = false
         navigationBarBackgroundView.backgroundColor = navigationBackgroundColor
-        navigationBarBackgroundView.frame = CGRect(x: 0, y: ignoreStatusBarHeight ? 0 : -StatusBarHeight, width: UIScreen.main.bounds.width, height: topBarsHeight)
+        navigationBarBackgroundView.frame = CGRect(x: 0, y: -StatusBarHeight, width: UIScreen.main.bounds.width, height: TopBarsHeight)
         navigationBar?.insertSubview(navigationBarBackgroundView, at: 0)
-        
-        // Ignore status bar height?
-        self.navigationBar?.subviews.forEach {
-            if let imgViewBackground = $0 as? UIImageView, imgViewBackground.bounds.size.height == NavigationBarHeight {
-                ignoreStatusBarHeight = true
-            }
-        }
     }
     
     private func setupImageViewConstraints() {
@@ -158,11 +153,16 @@ public class StretchScrollView: ScrollView {
         let compensatedContentOffsetY = contentOffset.y + contentInset.top
         
         // Fade views and navigation bar
-        var newAlpha = (fadeOutOffset + compensatedContentOffsetY) / fadeOutOffset
+        var newAlpha = (FadeOutOffset + compensatedContentOffsetY) / FadeOutOffset
         newAlpha = max(0, newAlpha)
         newAlpha = min(1, newAlpha)
         _fadeViews.allObjects.forEach { $0.alpha = newAlpha }
-        navigationBar?.alpha = newAlpha
+        
+        // Navigation bar alpha won't be changed if content inset top is not zero or navigation bar is not translucent.
+        let shouldChangeNavigationBarAlpha = contentInset.top == 0 && navigationBar?.isTranslucent == true
+        if shouldChangeNavigationBarAlpha {
+            navigationBar?.alpha = newAlpha
+        }
         
         // Navigation bar background alpha
         let fadeInFinishDistance = NavigationFadeInFinishOffset
@@ -199,9 +199,18 @@ public class StretchScrollView: ScrollView {
     
     @objc private func onViewWillDisappear(_ notification: Notification) {
         navigationBarBackgroundView.alpha = 0
+        
+        if manageNavigationBarTransparency {
+            navigationBar?.restoreTransparencyState()
+        }
     }
     
     @objc private func onViewWillAppear(_ notification: Notification) {
+        if manageNavigationBarTransparency {
+            navigationBar?.saveTransparencyState(replace: false)
+            navigationBar?.makeTransparent()
+        }
+        
         configureVisibility()
     }
 }

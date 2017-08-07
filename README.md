@@ -37,9 +37,16 @@ Set needed outlets and options.
 <img src="Example/StretchScrollView/outlets.png"/>
 <img src="Example/StretchScrollView/options.png"/>
 
-You are done!
+```swift
+/// StretchScrollView will manage navigation bar transparency by itself.
+/// You could disable this option to manage it by yourself or to disable navigation bar animations.
+@IBInspectable var manageNavigationBarTransparency: Bool = true
 
-Please note that you have to make your navigation bar fully transparent if you want to change it's background color. See example project for more details.
+/// In case of transparent navigation bar you may specify background color that will appear when you scroll up.
+@IBInspectable var navigationBackgroundColor: UIColor = .clear
+```
+
+You are done! See example project for more details.
 
 ## Contributions
 

@@ -2,6 +2,13 @@
 All notable changes to this project will be documented in this file.
 `StretchScrollView` adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.0.0](https://github.com/APUtils/StretchScrollView/releases/tag/2.0.0)
+Released on 08/07/2017.
+
+#### Added
+- Manage navigation bar transparency automatically
+  - Added by [Anton Plebanovich](https://github.com/anton-plebanovich).
+
 ## [1.2.0](https://github.com/APUtils/StretchScrollView/releases/tag/1.2.0)
 Released on 08/04/2017.
 
