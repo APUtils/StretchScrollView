@@ -1,6 +1,6 @@
 {
   "name": "StretchScrollView",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "summary": "ScrollView that allows to stretch it`s image",
   "description": "StretchScrollView provides functionality to enlarge title image and hide overlays when scrolling down. When scrolling up it allows to animate background of navigation bar.",
   "homepage": "https://github.com/APUtils/StretchScrollView",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/APUtils/StretchScrollView.git",
-    "tag": "2.1.0"
+    "tag": "2.1.1"
   },
   "platforms": {
     "ios": "8.0"
