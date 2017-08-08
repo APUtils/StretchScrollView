@@ -17,6 +17,20 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 ## Installation
 
+#### Carthage
+
+**If you are setting `StretchScrollView` class in storyboard assure module field is also `StretchScrollView`**
+
+<img src="Example/StretchScrollView/customClass.png"/>
+
+Please check [official guide](https://github.com/Carthage/Carthage#if-youre-building-for-ios-tvos-or-watchos)
+
+Cartfile:
+
+```
+github "APUtils/StretchScrollView"
+```
+
 #### CocoaPods
 
 StretchScrollView is available through [CocoaPods](http://cocoapods.org). To install
@@ -26,9 +40,9 @@ it, simply add the following line to your Podfile:
 pod 'StretchScrollView'
 ```
 
-## Usage
+## Configuration
 
-Assign `StretchScrollView` class to your UIScrollView in storyboard.
+Assign `StretchScrollView` class to your UIScrollView in storyboard, **assure module field is also `StretchScrollView`**:
 
 <img src="Example/StretchScrollView/customClass.png"/>
 
@@ -36,6 +50,18 @@ Set needed outlets and options.
 
 <img src="Example/StretchScrollView/outlets.png"/>
 <img src="Example/StretchScrollView/options.png"/>
+
+Usually content mode `Aspect Fill` fits well for `UIImageView`:
+
+<img src="Example/StretchScrollView/contentMode.png"/>
+
+Properly setup constraints for `stretchedView`. There are two resize modes available: by top and height constraints and by top and sides constraints.
+
+Example constraints setups:
+
+<img src="Example/StretchScrollView/constraints.png"/>
+
+<img src="Example/StretchScrollView/constraints2.png"/>
 
 ```swift
 /// StretchScrollView will manage navigation bar transparency by itself.

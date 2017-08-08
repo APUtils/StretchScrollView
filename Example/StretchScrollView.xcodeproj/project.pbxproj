@@ -16,6 +16,9 @@
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 		AE66E9E765FE48F8F42F99C7 /* Pods_StretchScrollView_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60918A1E510DF6447EEA1A17 /* Pods_StretchScrollView_Tests.framework */; };
 		B02A39341F34BF88002E29F0 /* podInstall.command in Resources */ = {isa = PBXBuildFile; fileRef = B02A39331F34BF88002E29F0 /* podInstall.command */; };
+		B0A072CE1F39DF4A001B8CC6 /* contentMode.png in Resources */ = {isa = PBXBuildFile; fileRef = B0A072CD1F39DF4A001B8CC6 /* contentMode.png */; };
+		B0A072D21F39E929001B8CC6 /* constraints2.png in Resources */ = {isa = PBXBuildFile; fileRef = B0A072D11F39E929001B8CC6 /* constraints2.png */; };
+		B0A072D41F39EBAE001B8CC6 /* constraints.png in Resources */ = {isa = PBXBuildFile; fileRef = B0A072D31F39EBAE001B8CC6 /* constraints.png */; };
 		B0C2F5FA1F20FEB700805B26 /* StretchScrollView.gif in Resources */ = {isa = PBXBuildFile; fileRef = B0C2F5F91F20FEB700805B26 /* StretchScrollView.gif */; };
 		B0C2F5FC1F20FEE400805B26 /* customClass.png in Resources */ = {isa = PBXBuildFile; fileRef = B0C2F5FB1F20FEE400805B26 /* customClass.png */; };
 		B0C2F5FF1F20FF7400805B26 /* options.png in Resources */ = {isa = PBXBuildFile; fileRef = B0C2F5FD1F20FF7400805B26 /* options.png */; };
@@ -55,6 +58,9 @@
 		A01BC4B8417019BB3834CAF7 /* CHANGELOG.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = CHANGELOG.md; path = ../CHANGELOG.md; sourceTree = "<group>"; };
 		A4D03A549CB8FAECFFEAD8CF /* Pods-StretchScrollView_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StretchScrollView_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StretchScrollView_Example/Pods-StretchScrollView_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		B02A39331F34BF88002E29F0 /* podInstall.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = podInstall.command; sourceTree = "<group>"; };
+		B0A072CD1F39DF4A001B8CC6 /* contentMode.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = contentMode.png; sourceTree = "<group>"; };
+		B0A072D11F39E929001B8CC6 /* constraints2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = constraints2.png; sourceTree = "<group>"; };
+		B0A072D31F39EBAE001B8CC6 /* constraints.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = constraints.png; sourceTree = "<group>"; };
 		B0C2F5F91F20FEB700805B26 /* StretchScrollView.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = StretchScrollView.gif; sourceTree = "<group>"; };
 		B0C2F5FB1F20FEE400805B26 /* customClass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = customClass.png; sourceTree = "<group>"; };
 		B0C2F5FD1F20FF7400805B26 /* options.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = options.png; sourceTree = "<group>"; };
@@ -187,6 +193,9 @@
 		B06688E41F13EAB300A02878 /* _Images */ = {
 			isa = PBXGroup;
 			children = (
+				B0A072D31F39EBAE001B8CC6 /* constraints.png */,
+				B0A072D11F39E929001B8CC6 /* constraints2.png */,
+				B0A072CD1F39DF4A001B8CC6 /* contentMode.png */,
 				B0C2F5FB1F20FEE400805B26 /* customClass.png */,
 				B0C2F5FD1F20FF7400805B26 /* options.png */,
 				B0C2F5FE1F20FF7400805B26 /* outlets.png */,
@@ -292,9 +301,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				B0C2F5FC1F20FEE400805B26 /* customClass.png in Resources */,
+				B0A072D41F39EBAE001B8CC6 /* constraints.png in Resources */,
+				B0A072D21F39E929001B8CC6 /* constraints2.png in Resources */,
 				B02A39341F34BF88002E29F0 /* podInstall.command in Resources */,
 				B0C2F5FA1F20FEB700805B26 /* StretchScrollView.gif in Resources */,
 				B0C2F5FF1F20FF7400805B26 /* options.png in Resources */,
+				B0A072CE1F39DF4A001B8CC6 /* contentMode.png in Resources */,
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				B0C2F6001F20FF7400805B26 /* outlets.png in Resources */,

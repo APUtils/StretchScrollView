@@ -11,6 +11,26 @@ import APExtensions
 import BaseClasses
 
 //-----------------------------------------------------------------------------
+// MARK: - Helper Extensions
+//-----------------------------------------------------------------------------
+
+fileprivate extension UIView {
+    /// Returns closest UIViewController from responders chain.
+    fileprivate var viewController: UIViewController? {
+        var nextResponder: UIResponder? = self
+        while nextResponder != nil {
+            nextResponder = nextResponder?.next
+            
+            if let viewController = nextResponder as? UIViewController {
+                return viewController
+            }
+        }
+        
+        return nil
+    }
+}
+
+//-----------------------------------------------------------------------------
 // MARK: - Constants
 //-----------------------------------------------------------------------------
 
@@ -29,6 +49,16 @@ private let TopBarsHeight: CGFloat = StatusBarHeight + NavigationBarHeight
 /// - note: Title image constraints/fill mode should be configured properly for resizing to work. Controller configures
 /// top and height constraints only.
 public class StretchScrollView: ScrollView {
+    
+    //-----------------------------------------------------------------------------
+    // MARK: - Enums
+    //-----------------------------------------------------------------------------
+    
+    enum ResizeType {
+        case none
+        case topAndHeight(topConstraint: NSLayoutConstraint, heightConstraint: NSLayoutConstraint, defaultHeight: CGFloat)
+        case topAndSides(topConstraint: NSLayoutConstraint, leftConstraint: NSLayoutConstraint, rightConstraint: NSLayoutConstraint, aspectRatio: CGFloat)
+    }
     
     //-----------------------------------------------------------------------------
     // MARK: - @IBInspectable
@@ -59,9 +89,7 @@ public class StretchScrollView: ScrollView {
     }
     
     private let navigationBarBackgroundView = UIView()
-    private var cstrImageViewTop: NSLayoutConstraint?
-    private var cstrImageViewHeight: NSLayoutConstraint?
-    private var defaultHeight: CGFloat = 0
+    private var resizeType: ResizeType = .none
     
     //-----------------------------------------------------------------------------
     // MARK: - Initialization and Setup
@@ -107,21 +135,45 @@ public class StretchScrollView: ScrollView {
     private func setupImageViewConstraints() {
         guard let superview = stretchedView.superview else { return }
         
-        for constraint in superview.constraints {
-            if (constraint.firstItem === stretchedView && constraint.secondItem === superview && constraint.firstAttribute == .top) ||
-                (constraint.secondItem === stretchedView && constraint.firstItem === superview && constraint.secondAttribute == .top) {
-                
-                self.cstrImageViewTop = constraint
+        var topConstraint: NSLayoutConstraint?
+        var leadingConstraint: NSLayoutConstraint?
+        var trailingConstraint: NSLayoutConstraint?
+        var heightConstraint: NSLayoutConstraint?
+        var defaultHeight: CGFloat?
+        
+        for constraint in stretchedView.constraints {
+            if (constraint.firstItem === stretchedView && constraint.firstAttribute == .height) {
+                heightConstraint = constraint
+                defaultHeight = constraint.constant
                 break
             }
         }
         
-        for constraint in stretchedView.constraints {
-            if (constraint.firstItem === stretchedView && constraint.firstAttribute == .height) {
-                self.cstrImageViewHeight = constraint
-                self.defaultHeight = constraint.constant
-                break
+        for constraint in superview.constraints {
+            if (constraint.firstItem === stretchedView && constraint.secondItem === superview && constraint.firstAttribute == .top) ||
+                (constraint.secondItem === stretchedView && constraint.firstItem === superview && constraint.secondAttribute == .top) {
+                
+                topConstraint = constraint
             }
+            
+            if (constraint.firstItem === stretchedView && constraint.secondItem === superview && constraint.firstAttribute == .leading) ||
+                (constraint.secondItem === stretchedView && constraint.firstItem === superview && constraint.secondAttribute == .leading) {
+                
+                leadingConstraint = constraint
+            }
+            
+            if (constraint.firstItem === stretchedView && constraint.secondItem === superview && constraint.firstAttribute == .trailing) ||
+                (constraint.secondItem === stretchedView && constraint.firstItem === superview && constraint.secondAttribute == .trailing) {
+                
+                trailingConstraint = constraint
+            }
+        }
+        
+        if let topConstraint = topConstraint, let heightConstraint = heightConstraint, let defaultHeight = defaultHeight {
+            resizeType = .topAndHeight(topConstraint: topConstraint, heightConstraint: heightConstraint, defaultHeight: defaultHeight)
+        } else if let topConstraint = topConstraint, let leadingConstraint = leadingConstraint, let trailingConstraint = trailingConstraint {
+            let aspectRatio: CGFloat = stretchedView.bounds.width / stretchedView.bounds.height
+            resizeType = .topAndSides(topConstraint: topConstraint, leftConstraint: leadingConstraint, rightConstraint: trailingConstraint, aspectRatio: aspectRatio)
         }
     }
     
@@ -135,15 +187,22 @@ public class StretchScrollView: ScrollView {
     }
     
     private func configureStretchedView() {
-        guard let cstrImageViewTop = cstrImageViewTop, let cstrImageViewHeight = cstrImageViewHeight else { return }
-        
-        let compensatedContentOffsetY = contentOffset.y + contentInset.top
-        
-        let newTopOffset = compensatedContentOffsetY
-        cstrImageViewTop.constant = min(0, newTopOffset)
-        
-        let newHeight = max(defaultHeight, defaultHeight - compensatedContentOffsetY)
-        cstrImageViewHeight.constant = newHeight
+        switch resizeType {
+        case .none: break
+            
+        case .topAndHeight(let topConstraint, let heightConstraint, let defaultHeight):
+            let compensatedContentOffsetY = contentOffset.y + contentInset.top
+            topConstraint.constant = min(0, compensatedContentOffsetY)
+            heightConstraint.constant = max(defaultHeight, defaultHeight - compensatedContentOffsetY)
+            
+        case .topAndSides(let topConstraint, let leftConstraint, let rightConstraint, let aspectRatio):
+            let compensatedContentOffsetY = contentOffset.y + contentInset.top
+            let newTopConstant = min(0, compensatedContentOffsetY)
+            let newSidesConstant = newTopConstant * aspectRatio / 2
+            topConstraint.constant = newTopConstant
+            leftConstraint.constant = newSidesConstant
+            rightConstraint.constant = newSidesConstant
+        }
     }
     
     private func configureVisibility() {
