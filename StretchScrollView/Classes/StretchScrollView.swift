@@ -8,27 +8,6 @@
 
 import UIKit
 import APExtensions
-import BaseClasses
-
-//-----------------------------------------------------------------------------
-// MARK: - Helper Extensions
-//-----------------------------------------------------------------------------
-
-fileprivate extension UIView {
-    /// Returns closest UIViewController from responders chain.
-    fileprivate var viewController: UIViewController? {
-        var nextResponder: UIResponder? = self
-        while nextResponder != nil {
-            nextResponder = nextResponder?.next
-            
-            if let viewController = nextResponder as? UIViewController {
-                return viewController
-            }
-        }
-        
-        return nil
-    }
-}
 
 //-----------------------------------------------------------------------------
 // MARK: - Constants
@@ -48,7 +27,7 @@ private let TopBarsHeight: CGFloat = StatusBarHeight + NavigationBarHeight
 /// animate background of navigation bar.
 /// - note: Title image constraints/fill mode should be configured properly for resizing to work. Controller configures
 /// top and height constraints only.
-public class StretchScrollView: ScrollView {
+public class StretchScrollView: UIScrollView {
     
     //-----------------------------------------------------------------------------
     // MARK: - Enums
@@ -108,6 +87,9 @@ public class StretchScrollView: ScrollView {
     }
     
     private func setupProperties() {
+        // Decreased button touch delay configuration
+        delaysContentTouches = false
+        
         delegate = self
         
         fadeViews?.forEach({ _fadeViews.add($0) })
@@ -241,6 +223,19 @@ public class StretchScrollView: ScrollView {
         super.awakeFromNib()
         
         setup()
+    }
+    
+    //-----------------------------------------------------------------------------
+    // MARK: - UIScrollView Methods
+    //-----------------------------------------------------------------------------
+    
+    // Decreased button touch delay configuration
+    override open func touchesShouldCancel(in view: UIView) -> Bool {
+        if view is UIButton {
+            return true
+        }
+        
+        return super.touchesShouldCancel(in: view)
     }
     
     //-----------------------------------------------------------------------------

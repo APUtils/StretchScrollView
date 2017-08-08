@@ -26,9 +26,6 @@
   "dependencies": {
     "APExtensions/ViewState": [
       ">= 3.3.1"
-    ],
-    "BaseClasses": [
-
     ]
   }
 }
