@@ -29,7 +29,7 @@ post_install do |installer|
     # Carthage support.
     # It puts `StretchScrollView.swift` into public headers so @IBInspectable won't be stripped out.
     additionHeader = installer.pods_project.development_pods['StretchScrollView/StretchScrollView.swift']
-    headersBuildPhase = installer.pods_project.objects.select{ |x| x.class == Xcodeproj::Project::Object::PBXHeadersBuildPhase }[0];
+    headersBuildPhase = installer.pods_project.targets.select{ |x| x.name == 'StretchScrollView' }[0].headers_build_phase
     buildFile = headersBuildPhase.add_file_reference(additionHeader)
     buildFile.settings = { 'ATTRIBUTES' => ['Public']}
 end
