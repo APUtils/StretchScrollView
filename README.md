@@ -1,9 +1,10 @@
 # StretchScrollView
 
-[![CI Status](http://img.shields.io/travis/anton-plebanovich/StretchScrollView.svg?style=flat)](https://travis-ci.org/anton-plebanovich/StretchScrollView)
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Version](https://img.shields.io/cocoapods/v/StretchScrollView.svg?style=flat)](http://cocoapods.org/pods/StretchScrollView)
 [![License](https://img.shields.io/cocoapods/l/StretchScrollView.svg?style=flat)](http://cocoapods.org/pods/StretchScrollView)
 [![Platform](https://img.shields.io/cocoapods/p/StretchScrollView.svg?style=flat)](http://cocoapods.org/pods/StretchScrollView)
+[![CI Status](http://img.shields.io/travis/anton-plebanovich/StretchScrollView.svg?style=flat)](https://travis-ci.org/anton-plebanovich/StretchScrollView)
 
 StretchScrollView provides functionality to enlarge title image and hide overlays when scrolling down. When scrolling up it allows to animate background of navigation bar.
 
