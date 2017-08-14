@@ -1,5 +1,5 @@
 //
-//  UIImage+Utils.swift
+//  UIImage+Storyboard.swift
 //  APExtensions
 //
 //  Created by Anton Plebanovich on 8/3/17.

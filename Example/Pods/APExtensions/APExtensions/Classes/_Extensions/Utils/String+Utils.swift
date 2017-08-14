@@ -122,6 +122,11 @@ public extension String {
 //-----------------------------------------------------------------------------
 
 public extension String {
+    /// Splits string by capital letters without stripping them
+    public var splittedByCapitals: [String] {
+        return characters.splitBefore(separator: { $0.isUpperCase }).map({ String($0) })
+    }
+    
     /// Split string into slices of specified length
     public func splitByLength(_ length: Int) -> [String] {
         var result = [String]()
@@ -146,10 +151,6 @@ public extension String {
         }
         
         return result
-    }
-    
-    public func splitByCapitals() -> [String] {
-        return characters.splitBefore(separator: { $0.isUpperCase }).map({ String($0) })
     }
 }
 

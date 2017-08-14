@@ -14,7 +14,7 @@ import UIKit
 
 public extension UIViewController {
     /// Previous view controller in navigation stack
-    var previousViewController: UIViewController? {
+    public var previousViewController: UIViewController? {
         guard let navigationViewControllers = navigationController?.viewControllers else { return nil }
         
         let previousViewControllerIndex = navigationViewControllers.count - 2
@@ -25,7 +25,7 @@ public extension UIViewController {
         }
     }
     
-    var isBeingRemoved: Bool {
+    public var isBeingRemoved: Bool {
         return isMovingFromParentViewController || isBeingDismissed || (navigationController?.isBeingDismissed ?? false)
     }
     
@@ -35,7 +35,7 @@ public extension UIViewController {
     }
     
     /// Removes view controller using pop if it was pushed or using dismiss if it was presented.
-    func removeViewController(animated: Bool) {
+    public func removeViewController(animated: Bool) {
         if navigationController?.viewControllers.first == self {
             dismiss(animated: animated, completion: nil)
         } else if navigationController?.viewControllers.last == self {
@@ -62,7 +62,7 @@ public extension UIViewController {
         }
     }
     
-    func showActivityIndicator() {
+    public func showActivityIndicator() {
         showCounter += 1
         
         var activityIndicator: UIActivityIndicatorView! = view.subviews.flatMap({ $0 as? UIActivityIndicatorView }).last
@@ -77,7 +77,7 @@ public extension UIViewController {
         }
     }
     
-    func hideActivityIndicator() {
+    public func hideActivityIndicator() {
         showCounter -= 1
         
         if showCounter <= 0 {

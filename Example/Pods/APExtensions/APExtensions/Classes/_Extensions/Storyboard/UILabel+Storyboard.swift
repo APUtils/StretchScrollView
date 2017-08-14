@@ -23,7 +23,7 @@ public extension UILabel {
     }
     
     /// Scale title font for screen
-    @IBInspectable var fitScreenSize: Bool {
+    @IBInspectable public var fitScreenSize: Bool {
         get {
             return defaultFont != nil
         }

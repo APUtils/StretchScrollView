@@ -45,9 +45,11 @@ public class StretchScrollView: UIScrollView {
     
     /// StretchScrollView will manage navigation bar transparency by itself.
     /// You could disable this option to manage it by yourself or to disable navigation bar animations.
+    /// Default is `true`.
     @IBInspectable var manageNavigationBarTransparency: Bool = true
     
     /// In case of transparent navigation bar you may specify background color that will appear when you scroll up.
+    /// Default is clear color.
     @IBInspectable var navigationBackgroundColor: UIColor = .clear
     
     //-----------------------------------------------------------------------------
@@ -97,6 +99,7 @@ public class StretchScrollView: UIScrollView {
     }
     
     private func setupNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(onWillMoveToParentViewController(_:)), name: .UIViewControllerWillMoveToParentViewController, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(onViewWillAppear(_:)), name: .UIViewControllerViewWillAppear, object: viewController)
         NotificationCenter.default.addObserver(self, selector: #selector(onViewWillDisappear(_:)), name: .UIViewControllerViewWillDisappear, object: viewController)
     }
@@ -251,11 +254,25 @@ public class StretchScrollView: UIScrollView {
     // MARK: - Private methods - Notifications
     //-----------------------------------------------------------------------------
     
-    @objc private func onViewWillDisappear(_ notification: Notification) {
-        navigationBarBackgroundView.alpha = 0
+    @objc private func onWillMoveToParentViewController(_ notification: Notification) {
+        // iOS bug, must configure navigation bar future state in willMove(toParentViewController:) method of popping view controller
+        guard let viewController = notification.object as? UIViewController else { return }
         
-        if manageNavigationBarTransparency {
-            restoreTransparencyState()
+        // Moving from parent
+        guard notification.userInfo?["parent"] == nil else { return }
+        
+        if viewController.previousViewController == self.viewController {
+            // Popping to our controller
+            if manageNavigationBarTransparency {
+                makeTransparent()
+            }
+        } else if viewController == self.viewController {
+            // Popping our controller
+            navigationBarBackgroundView.alpha = 0
+            
+            if manageNavigationBarTransparency {
+                restoreTransparencyState()
+            }
         }
     }
     
@@ -268,11 +285,19 @@ public class StretchScrollView: UIScrollView {
         configureVisibility()
     }
     
+    @objc private func onViewWillDisappear(_ notification: Notification) {
+        navigationBarBackgroundView.alpha = 0
+        
+        if manageNavigationBarTransparency {
+            restoreTransparencyState()
+        }
+    }
+    
     //-----------------------------------------------------------------------------
-    // MARK: - Private Methods - Transparency State
+    // MARK: - Transparency State
     //-----------------------------------------------------------------------------
     
-    struct TransparencyState {
+    private struct TransparencyState {
         let isTranslucent: Bool
         let backgroundImage: UIImage?
         let shadowImage: UIImage?
@@ -280,13 +305,13 @@ public class StretchScrollView: UIScrollView {
     
     private var transparencyState: TransparencyState?
     
-    func saveTransparencyState(replace: Bool) {
+    private func saveTransparencyState(replace: Bool) {
         guard replace || transparencyState == nil, let navigationBar = navigationBar else { return }
         
         transparencyState = TransparencyState(isTranslucent: navigationBar.isTranslucent, backgroundImage: navigationBar.backgroundImage(for: .default), shadowImage: navigationBar.shadowImage)
     }
     
-    func restoreTransparencyState() {
+    private func restoreTransparencyState() {
         guard let transparencyState = transparencyState else { return }
         
         navigationBar?.isTranslucent = transparencyState.isTranslucent
@@ -294,7 +319,7 @@ public class StretchScrollView: UIScrollView {
         navigationBar?.shadowImage = transparencyState.shadowImage
     }
     
-    func makeTransparent() {
+    private func makeTransparent() {
         navigationBar?.isTranslucent = true
         navigationBar?.setBackgroundImage(UIImage(), for: .default)
         navigationBar?.shadowImage = UIImage()

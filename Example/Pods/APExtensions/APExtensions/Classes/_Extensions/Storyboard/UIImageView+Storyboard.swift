@@ -27,7 +27,7 @@ public extension UIImageView {
     }
     
     /// Scale image for screen
-    @IBInspectable var fitScreenSize: Bool {
+    @IBInspectable public var fitScreenSize: Bool {
         get {
             return defaultImage != nil
         }
@@ -71,13 +71,13 @@ public extension UIImageView {
     
     /// Using localized "_en" key to append to image. Won't work if you don't have "_en" key in your localized strings.
     /// In case you need to change image programmatically - set this property to `nil` first
-    @IBInspectable var localizableImageName: String? {
+    @IBInspectable public var localizableImageName: String? {
         get {
             return localizedImageName
         }
         set {
             if let newValue = newValue {
-                let localizedImageName = newValue + g_Translate("_en")
+                let localizedImageName = newValue + NSLocalizedString("_en", comment: "")
                 self.localizedImageName = localizedImageName
                 
                 image = UIImage(named: localizedImageName)

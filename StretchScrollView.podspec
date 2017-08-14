@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'StretchScrollView'
-  s.version          = '2.1.1'
+  s.version          = '2.2.0'
   s.summary          = 'ScrollView that allows to stretch it`s image'
 
 # This description is used to generate tags and improve search results.
@@ -38,5 +38,5 @@ StretchScrollView provides functionality to enlarge title image and hide overlay
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   s.frameworks = 'Foundation', 'UIKit'
-  s.dependency 'APExtensions/ViewState', '>= 3.3.1'
+  s.dependency 'APExtensions/ViewState', '>= 3.4.5'
 end

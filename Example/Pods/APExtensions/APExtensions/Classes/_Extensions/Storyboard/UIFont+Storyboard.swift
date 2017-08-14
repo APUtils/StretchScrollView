@@ -1,5 +1,5 @@
 //
-//  UIFont+Utils.swift
+//  UIFont+Storyboard.swift
 //  APExtensions
 //
 //  Created by Anton Plebanovich on 6/20/17.
@@ -25,4 +25,7 @@ public extension UIFont {
         
         return UIFont(descriptor: fontDescriptor, size: newFontSize)
     }
+    
+    
+    // TODO: Add Dynamic Type with UIFontMetrics for iOS 11
 }

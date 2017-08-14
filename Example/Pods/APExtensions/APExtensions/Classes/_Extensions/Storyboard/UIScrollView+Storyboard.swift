@@ -11,22 +11,22 @@ import UIKit
 
 public extension UIScrollView {
     /// Sets top 64 for inset
-    @IBInspectable var avoidTopBars: Bool {
+    @IBInspectable public var avoidTopBars: Bool {
         get {
             return contentInset.top == 64
         }
         set {
-            setTopNavigationBarsInset()
+            contentInset.top = 64
         }
     }
     
     /// Sets 49 for bottom inset
-    @IBInspectable var avoidTabBar: Bool {
+    @IBInspectable public var avoidTabBar: Bool {
         get {
             return contentInset.top == 49
         }
         set {
-            setBottomTabBarInset()
+            contentInset.bottom = 49
         }
     }
 }
