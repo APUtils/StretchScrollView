@@ -2,6 +2,14 @@
 All notable changes to this project will be documented in this file.
 `StretchScrollView` adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.2.1](https://github.com/APUtils/StretchScrollView/releases/tag/2.2.0)
+Released on 08/28/2017.
+
+#### Fixed
+- Possible conflicts with APExtensions extensions
+- Wrong state restoration when pop to root was performed
+
+
 ## [2.2.0](https://github.com/APUtils/StretchScrollView/releases/tag/2.2.0)
 Released on 08/14/2017.
 

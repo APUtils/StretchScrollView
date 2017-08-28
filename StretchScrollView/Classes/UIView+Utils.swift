@@ -1,5 +1,5 @@
 //
-//  UIView+StretchScrollView.swift
+//  UIView+Utils.swift
 //  StretchScrollView
 //
 //  Created by Anton Plebanovich on 8/8/17.
@@ -11,7 +11,7 @@ import UIKit
 
 extension UIView {
     /// Returns closest UIViewController from responders chain.
-    var viewController: UIViewController? {
+    var _viewController: UIViewController? {
         var nextResponder: UIResponder? = self
         while nextResponder != nil {
             nextResponder = nextResponder?.next

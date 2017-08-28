@@ -66,7 +66,7 @@ public class StretchScrollView: UIScrollView {
     private var _fadeViews = NSHashTable<UIView>(options: [.weakMemory])
     
     private var navigationBar: UINavigationBar? {
-        return viewController?.navigationController?.navigationBar
+        return _viewController?.navigationController?.navigationBar
     }
     
     private let navigationBarBackgroundView = UIView()
@@ -100,15 +100,15 @@ public class StretchScrollView: UIScrollView {
     
     private func setupNotifications() {
         NotificationCenter.default.addObserver(self, selector: #selector(onWillMoveToParentViewController(_:)), name: .UIViewControllerWillMoveToParentViewController, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(onViewWillAppear(_:)), name: .UIViewControllerViewWillAppear, object: viewController)
-        NotificationCenter.default.addObserver(self, selector: #selector(onViewWillDisappear(_:)), name: .UIViewControllerViewWillDisappear, object: viewController)
+        NotificationCenter.default.addObserver(self, selector: #selector(onViewWillAppear(_:)), name: .UIViewControllerViewWillAppear, object: _viewController)
+        NotificationCenter.default.addObserver(self, selector: #selector(onViewWillDisappear(_:)), name: .UIViewControllerViewWillDisappear, object: _viewController)
     }
     
     private func setupNavigationBar() {
         if manageNavigationBarTransparency {
             saveTransparencyState(replace: false)
             makeTransparent()
-            viewController?.automaticallyAdjustsScrollViewInsets = false
+            _viewController?.automaticallyAdjustsScrollViewInsets = false
         }
         
         navigationBarBackgroundView.isUserInteractionEnabled = false
@@ -261,12 +261,12 @@ public class StretchScrollView: UIScrollView {
         // Moving from parent
         guard notification.userInfo?["parent"] == nil else { return }
         
-        if viewController.previousViewController == self.viewController {
+        if viewController._previousViewController == self._viewController {
             // Popping to our controller
             if manageNavigationBarTransparency {
                 makeTransparent()
             }
-        } else if viewController == self.viewController {
+        } else if viewController == self._viewController {
             // Popping our controller
             navigationBarBackgroundView.alpha = 0
             

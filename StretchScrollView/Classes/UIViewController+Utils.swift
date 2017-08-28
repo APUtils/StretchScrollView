@@ -11,10 +11,10 @@ import UIKit
 
 extension UIViewController {
     /// Previous view controller in navigation stack
-    var previousViewController: UIViewController? {
-        guard let navigationViewControllers = navigationController?.viewControllers else { return nil }
+    var _previousViewController: UIViewController? {
+        guard let navigationViewControllers = navigationController?.viewControllers, let currentVcIndex = navigationViewControllers.index(of: self) else { return nil }
         
-        let previousViewControllerIndex = navigationViewControllers.count - 2
+        let previousViewControllerIndex = currentVcIndex - 1
         if previousViewControllerIndex >= 0 {
             return navigationViewControllers[previousViewControllerIndex]
         } else {
