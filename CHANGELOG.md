@@ -2,7 +2,13 @@
 All notable changes to this project will be documented in this file.
 `StretchScrollView` adheres to [Semantic Versioning](http://semver.org/).
 
-## [2.2.1](https://github.com/APUtils/StretchScrollView/releases/tag/2.2.0)
+## [3.0.0](https://github.com/APUtils/StretchScrollView/releases/tag/3.0.0)
+Released on 09/21/2017.
+
+Swift 4 migration
+
+
+## [2.2.1](https://github.com/APUtils/StretchScrollView/releases/tag/2.2.1)
 Released on 08/28/2017.
 
 #### Fixed

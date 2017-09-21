@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'StretchScrollView'
-  s.version          = '2.2.1'
+  s.version          = '3.0.0'
   s.summary          = 'ScrollView that allows to stretch it`s image'
 
 # This description is used to generate tags and improve search results.
