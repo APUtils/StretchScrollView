@@ -2,6 +2,13 @@
 All notable changes to this project will be documented in this file.
 `StretchScrollView` adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.0.2](https://github.com/APUtils/StretchScrollView/releases/tag/3.0.2)
+Released on 09/25/2017.
+
+#### Fixed
+- Top inset calculation fix
+
+
 ## [3.0.1](https://github.com/APUtils/StretchScrollView/releases/tag/3.0.1)
 Released on 09/25/2017.
 

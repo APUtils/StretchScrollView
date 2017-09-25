@@ -127,7 +127,7 @@ public class StretchScrollView: UIScrollView {
             }
         }
         
-        navigationControllerView?.insertSubview(navigationBarBackgroundView, at: 0)
+        configureNavigationBarBackgroundView()
     }
     
     private func setupImageViewConstraints() {
@@ -191,7 +191,7 @@ public class StretchScrollView: UIScrollView {
         case .topAndHeight(let topConstraint, let heightConstraint, let defaultHeight):
             let compensatedContentOffsetY: CGFloat
             if #available(iOS 11.0, *) {
-                compensatedContentOffsetY = contentOffset.y + contentInset.top + adjustedContentInset.top
+                compensatedContentOffsetY = contentOffset.y + adjustedContentInset.top
             } else {
                 compensatedContentOffsetY = contentOffset.y + contentInset.top
             }
@@ -202,7 +202,7 @@ public class StretchScrollView: UIScrollView {
         case .topAndSides(let topConstraint, let leftConstraint, let rightConstraint, let aspectRatio):
             let compensatedContentOffsetY: CGFloat
             if #available(iOS 11.0, *) {
-                compensatedContentOffsetY = contentOffset.y + contentInset.top + adjustedContentInset.top
+                compensatedContentOffsetY = contentOffset.y + adjustedContentInset.top
             } else {
                 compensatedContentOffsetY = contentOffset.y + contentInset.top
             }
@@ -216,14 +216,11 @@ public class StretchScrollView: UIScrollView {
     }
     
     private func configureVisibility() {
-        // Assure `navigationBarBackgroundView` below navigation bar
-        if let navigationBar = navigationBar {
-            navigationControllerView?.insertSubview(navigationBarBackgroundView, belowSubview: navigationBar)
-        }
+        configureNavigationBarBackgroundView()
         
         let compensatedContentOffsetY: CGFloat
         if #available(iOS 11.0, *) {
-            compensatedContentOffsetY = contentOffset.y + contentInset.top + adjustedContentInset.top
+            compensatedContentOffsetY = contentOffset.y + adjustedContentInset.top
         } else {
             compensatedContentOffsetY = contentOffset.y + contentInset.top
         }
@@ -237,13 +234,13 @@ public class StretchScrollView: UIScrollView {
         // Navigation bar alpha won't be changed if content inset top is not zero or navigation bar is not translucent.
         let shouldChangeNavigationBarAlpha: Bool
         if #available(iOS 11.0, *) {
-            shouldChangeNavigationBarAlpha = contentInset.top == 0 && adjustedContentInset.top == 0 && navigationBar?.isTranslucent == true
+            shouldChangeNavigationBarAlpha = adjustedContentInset.top == 0 && navigationBar?.isTranslucent == true
         } else {
             shouldChangeNavigationBarAlpha = contentInset.top == 0 && navigationBar?.isTranslucent == true
         }
         
         if shouldChangeNavigationBarAlpha {
-            navigationBar?.alpha = newAlpha
+            navigationBar?.subviews.forEach({ $0.alpha = newAlpha })
         }
         
         // Navigation bar background alpha
@@ -254,6 +251,13 @@ public class StretchScrollView: UIScrollView {
         backgroundNewAlpha = max(0, backgroundNewAlpha)
         backgroundNewAlpha = min(1, backgroundNewAlpha)
         navigationBarBackgroundView.alpha = backgroundNewAlpha * newAlpha
+    }
+    
+    private func configureNavigationBarBackgroundView() {
+        // Assure `navigationBarBackgroundView` below navigation bar
+        if let navigationBar = navigationBar {
+            navigationControllerView?.insertSubview(navigationBarBackgroundView, belowSubview: navigationBar)
+        }
     }
     
     //-----------------------------------------------------------------------------

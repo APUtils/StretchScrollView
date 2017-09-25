@@ -33,26 +33,53 @@ it, simply add the following line to your Podfile:
 pod 'APExtensions'
 ```
 
-Available subspecs: `ViewState`, `Storyboard`. Example Podfile for subspec:
+Available subspecs: `Core`, `ViewState`, `Storyboard`. Example Podfile for subspec:
 
 ```ruby
+pod 'APExtensions/Core'
 pod 'APExtensions/ViewState'
 pod 'APExtensions/Storyboard'
 ```
 
 ## Usage
 
+See [documentation](http://cocoadocs.org/docsets/APExtensions) for more details.
+
 ### Core
 
 TODO
 
+### Abstractions
+
+Various abstractions that simplyfies working.
+
+#### DelayedValue
+
+Simple abstraction that simplifies working with values that needs some time to be fetched. Kind of promise. Good to use in view models to simplify view configuration.
+
+```swift
+DelayedValue<UIImage> { completion in
+    // Getting image async. It takes some time.
+    
+    // Return image
+    completion(image)
+}.onValueAvailable { image in
+    // Will be called when image is available
+    self.imageView.image = image
+}
+```
+
 ### ViewState
 
-Extends UIViewController with .viewState enum property. Possible cases: `.notLoaded`, `.didLoad`, `.willAppear`, `.didAppear`, `.willDisappear`, `.didDisappear`.
+#### ViewController
 
-Also every UIViewController starts to send notifications about its state change. Available notifications to observe: `.UIViewControllerWillMoveToParentViewController`, `.UIViewControllerViewDidLoad`, `.UIViewControllerViewWillAppear`, `.UIViewControllerViewDidAppear`, `.UIViewControllerViewWillDisappear`, `.UIViewControllerViewDidDisappear`. You could check `userInfo` notification's dictionary for parameters if needed.
+- Extends UIViewController with .viewState enum property. Possible cases: `.notLoaded`, `.didLoad`, `.willAppear`, `.didAppear`, `.willDisappear`, `.didDisappear`.
+- Every UIViewController starts to send notifications about its state change. Available notifications to observe: `.UIViewControllerWillMoveToParentViewController`, `.UIViewControllerViewDidLoad`, `.UIViewControllerViewWillAppear`, `.UIViewControllerViewDidAppear`, `.UIViewControllerViewWillDisappear`, `.UIViewControllerViewDidDisappear`. You could check `userInfo` notification's dictionary for parameters if needed.
+- Adds `.hideKeyboardOnTouch` @IBInspectable property to hide keyboard on touch outside.
 
-See example project for more details.
+#### View
+
+Adds `.becomeFirstResponderOnViewDidAppear` @IBInspectable property to become first responser on `viewDidAppear`.
 
 ### Storyboard
 

@@ -26,6 +26,18 @@ end
 
 
 post_install do |installer|
+    # TODO: Remove pods when they converted to Swift 4
+    # Your list of targets here.
+    myTargets = ['Quick', 'Nimble', 'Nimble-Snapshots']
+    
+    installer.pods_project.targets.each do |target|
+        if myTargets.include? target.name
+            target.build_configurations.each do |config|
+                config.build_settings['SWIFT_VERSION'] = '3.2'
+            end
+        end
+    end
+    
     # Carthage support.
     # It puts `StretchScrollView.swift` into public headers so @IBInspectable won't be stripped out.
     additionHeader = installer.pods_project.development_pods['StretchScrollView/StretchScrollView.swift']

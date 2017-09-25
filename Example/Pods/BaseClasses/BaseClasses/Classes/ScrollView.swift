@@ -38,9 +38,9 @@ open class ScrollView: UIScrollView {
     
     override open func touchesShouldCancel(in view: UIView) -> Bool {
         if view is UIButton {
-            return  true
+            return true
         }
         
-        return  super.touchesShouldCancel(in: view)
+        return super.touchesShouldCancel(in: view)
     }
 }

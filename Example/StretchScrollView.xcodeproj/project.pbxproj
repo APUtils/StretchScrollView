@@ -23,6 +23,7 @@
 		B0C2F5FC1F20FEE400805B26 /* customClass.png in Resources */ = {isa = PBXBuildFile; fileRef = B0C2F5FB1F20FEE400805B26 /* customClass.png */; };
 		B0C2F5FF1F20FF7400805B26 /* options.png in Resources */ = {isa = PBXBuildFile; fileRef = B0C2F5FD1F20FF7400805B26 /* options.png */; };
 		B0C2F6001F20FF7400805B26 /* outlets.png in Resources */ = {isa = PBXBuildFile; fileRef = B0C2F5FE1F20FF7400805B26 /* outlets.png */; };
+		B0D3A02C1F798D4F0062AD2B /* podUpdate.command in Resources */ = {isa = PBXBuildFile; fileRef = B0D3A02B1F798D4F0062AD2B /* podUpdate.command */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,7 @@
 		B0C2F5FB1F20FEE400805B26 /* customClass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = customClass.png; sourceTree = "<group>"; };
 		B0C2F5FD1F20FF7400805B26 /* options.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = options.png; sourceTree = "<group>"; };
 		B0C2F5FE1F20FF7400805B26 /* outlets.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = outlets.png; sourceTree = "<group>"; };
+		B0D3A02B1F798D4F0062AD2B /* podUpdate.command */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = podUpdate.command; sourceTree = "<group>"; };
 		B4EEBC2CD7F5CD10A5AD6DA1 /* .travis.yml */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = .travis.yml; path = ../.travis.yml; sourceTree = "<group>"; };
 		BD431106B83DB8A746A6DA4D /* Pods-StretchScrollView_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StretchScrollView_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-StretchScrollView_Example/Pods-StretchScrollView_Example.release.xcconfig"; sourceTree = "<group>"; };
 		CF654993D734B5AB8BCEB020 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
@@ -174,6 +176,7 @@
 				81FF47BB9B0F09FA4D544006 /* podCheck.command */,
 				B02A39331F34BF88002E29F0 /* podInstall.command */,
 				F0E910E8E6A00D7C17F0567A /* podPush.command */,
+				B0D3A02B1F798D4F0062AD2B /* podUpdate.command */,
 				CF654993D734B5AB8BCEB020 /* README.md */,
 			);
 			name = "Podspec Metadata";
@@ -308,6 +311,7 @@
 				B0C2F5FF1F20FF7400805B26 /* options.png in Resources */,
 				B0A072CE1F39DF4A001B8CC6 /* contentMode.png in Resources */,
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
+				B0D3A02C1F798D4F0062AD2B /* podUpdate.command in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				B0C2F6001F20FF7400805B26 /* outlets.png in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
