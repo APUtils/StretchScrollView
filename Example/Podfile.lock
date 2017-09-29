@@ -21,7 +21,7 @@ PODS:
     - FBSnapshotTestCase (~> 2.0)
     - Nimble (~> 7.0)
   - Quick (1.1.0)
-  - StretchScrollView (3.0.2):
+  - StretchScrollView (3.0.4):
     - APExtensions/ViewState (>= 3.4.5)
 
 DEPENDENCIES:
@@ -44,7 +44,7 @@ SPEC CHECKSUMS:
   Nimble: 657d000e11df8aebe27cdaf9d244de7f30ed87f7
   Nimble-Snapshots: 31c8ef7fcebf0e68b4dff83f6e2160813a4a116b
   Quick: dafc587e21eed9f4cab3249b9f9015b0b7a7f71d
-  StretchScrollView: 622d107763a04daa3bee5e0590ced8e885ec9e12
+  StretchScrollView: 6d6bad9f7d768c40be3e01a65d4eebf2f98521d4
 
 PODFILE CHECKSUM: 79deee9f572bc50b156a84bda82e49d2d7283d6b
 
