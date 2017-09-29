@@ -15,9 +15,6 @@ import APExtensions
 
 private let FadeOutOffset: CGFloat = 60
 private let NavigationFadeInFinishOffset: CGFloat = 60
-private let StatusBarHeight: CGFloat = 20
-private let NavigationBarHeight: CGFloat = 44
-private let TopBarsHeight: CGFloat = StatusBarHeight + NavigationBarHeight
 
 //-----------------------------------------------------------------------------
 // MARK: - Class Implementation
@@ -78,7 +75,7 @@ public class StretchScrollView: UIScrollView {
         let navigationBarBackgroundView = UIView()
         navigationBarBackgroundView.isUserInteractionEnabled = false
         navigationBarBackgroundView.backgroundColor = navigationBackgroundColor
-        navigationBarBackgroundView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: TopBarsHeight)
+        navigationBarBackgroundView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 64)
         navigationBarBackgroundView.autoresizingMask = [.flexibleWidth]
         
         return navigationBarBackgroundView
@@ -180,7 +177,7 @@ public class StretchScrollView: UIScrollView {
     // MARK: - Configuration
     //-----------------------------------------------------------------------------
     
-    fileprivate func configure() {
+    private func configure() {
         configureStretchedView()
         configureVisibility()
     }
@@ -257,6 +254,14 @@ public class StretchScrollView: UIScrollView {
         super.awakeFromNib()
         
         setup()
+    }
+    
+    public override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        if let navigationBar = navigationBar {
+            navigationBarBackgroundView.frame = CGRect(x: 0, y: 0, width: navigationBar.bounds.width, height: navigationBar.frame.maxY)
+        }
     }
     
     //-----------------------------------------------------------------------------
