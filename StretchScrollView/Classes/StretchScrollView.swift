@@ -101,6 +101,9 @@ public class StretchScrollView: UIScrollView {
         // Decreased button touch delay configuration
         delaysContentTouches = false
         
+        // Should bounce even if contentSize is not enough
+        alwaysBounceVertical = true
+        
         delegate = self
         
         fadeViews?.forEach({ _fadeViews.add($0) })
