@@ -18,10 +18,25 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 Please check [official guide](https://github.com/Carthage/Carthage#if-youre-building-for-ios-tvos-or-watchos)
 
-Cartfile:
+Cartfile for unified framework:
 
 ```
-github "APUtils/APExtensions"
+github "APUtils/APExtensions" ~> 5.0
+```
+
+Cartfile for separate frameworks:
+
+```
+github "APUtils/APExtensions" "abstractions"
+github "APUtils/APExtensions" "core"
+github "APUtils/APExtensions" "storyboard"
+github "APUtils/APExtensions" "view-configuration"
+github "APUtils/APExtensions" "view-state"
+```
+
+Cartfile for specific commit:
+```
+github "APUtils/APExtensions" "a01cbc24474822d9b64e70372910f404d6b944a1"
 ```
 
 #### CocoaPods
@@ -30,15 +45,17 @@ APExtensions is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'APExtensions'
+pod 'APExtensions', '~> 5.0'
 ```
 
-Available subspecs: `Core`, `ViewState`, `Storyboard`. Example Podfile for subspec:
+Available subspecs: `Abstractions`,  `Core`, `Storyboard`, `ViewConfiguration`, `ViewState`. Example Podfile for subspec:
 
 ```ruby
-pod 'APExtensions/Core'
-pod 'APExtensions/ViewState'
-pod 'APExtensions/Storyboard'
+pod 'APExtensions/Abstractions', '~> 5.0'
+pod 'APExtensions/Core', '~> 5.0'
+pod 'APExtensions/Storyboard', '~> 5.0'
+pod 'APExtensions/ViewConfiguration', '~> 5.0'
+pod 'APExtensions/ViewState', '~> 5.0'
 ```
 
 ## Usage
@@ -47,7 +64,7 @@ See [documentation](http://cocoadocs.org/docsets/APExtensions) for more details.
 
 ### Core
 
-TODO
+Global Utils and Debug methods, Controllers, Protocols and whole lot of default classes extensions. Read more in [DOCS](https://aputils.github.io/APExtensions/).
 
 ### Abstractions
 
@@ -69,6 +86,19 @@ DelayedValue<UIImage> { completion in
 }
 ```
 
+### ViewConfiguration
+
+Adds `State` enum and `.configure(_:)` method to views so it's easy and robust to configure them.
+
+```swift
+// Creating UIImageView.State and store it in view model
+let imageViewState: UIImageView.State = .shown(image: UIImage(named: "ic_done_resizeable"))
+viewModel.imageViewState = imageViewState
+
+// Configure UIImageView with view model
+imageView.configure(viewModel.imageViewState)
+```
+
 ### ViewState
 
 #### ViewController
@@ -88,47 +118,47 @@ Extends default attributes that can be configured using storyboard.
 
 **NSLayoutConstraint**:
 
-<img src="Example/APExtensions/nslayoutconstraint.png"/>
+<img src="https://github.com/APUtils/APExtensions/raw/master/Example/APExtensions/nslayoutconstraint.png"/>
 
 - `fitScreenSize` to adjust constraint constant according to screen size. [*](https://github.com/APUtils/APExtensions#remark)
 - `onePixelSize` to make constraint 1 pixel size
 
 **UIButton**:
 
-<img src="Example/APExtensions/uibutton.png"/>
+<img src="https://github.com/APUtils/APExtensions/raw/master/Example/APExtensions/uibutton.png"/>
 
 - `fitScreenSize` to adjust font size according to screen size. [*](https://github.com/APUtils/APExtensions#remark)
 - `lines` to change title label max lines count
 
 **UIImageView**:
 
-<img src="Example/APExtensions/UIImageView.png"/>
+<img src="https://github.com/APUtils/APExtensions/raw/master/Example/APExtensions/UIImageView.png"/>
 
 - `fitScreenSize` to adjust image size according to screen size. [*](https://github.com/APUtils/APExtensions#remark)
 - `localizableImageName` to use localize specific image. You name your images like `image_en`, `image_ru`, `image_fr` put `image` in `localizableImageName` field and assure you localized `_en` to be `_fr` for French localization, `_ru` for Russian and so on.
 
 **UILabel**:
 
-<img src="Example/APExtensions/UILabel.png"/>
+<img src="https://github.com/APUtils/APExtensions/raw/master/Example/APExtensions/UILabel.png"/>
 
 - `fitScreenSize` to adjust font size according to screen size. [*](https://github.com/APUtils/APExtensions#remark)
 
 **UIScrollView**:
 
-<img src="Example/APExtensions/UIScrollView.png"/>
+<img src="https://github.com/APUtils/APExtensions/raw/master/Example/APExtensions/UIScrollView.png"/>
 
 - `avoidTopBars` to set contentInset.top to 64
 - `avoidTabBar` to set contentInset.bottom to 49
 
 **UITextView**:
 
-<img src="Example/APExtensions/UITextView.png"/>
+<img src="https://github.com/APUtils/APExtensions/raw/master/Example/APExtensions/UITextView.png"/>
 
 - `fitScreenSize` to adjust font size according to screen size. [*](https://github.com/APUtils/APExtensions#remark)
 
 **UIView**:
 
-<img src="Example/APExtensions/uiview.png"/>
+<img src="https://github.com/APUtils/APExtensions/raw/master/Example/APExtensions/uiview.png"/>
 
 - `borderColor` to set border color
 - `borderWidth` to set border width
@@ -142,7 +172,7 @@ Extends default attributes that can be configured using storyboard.
 
 **UIViewController**:
 
-<img src="Example/APExtensions/UIViewController.png"/>
+<img src="https://github.com/APUtils/APExtensions/raw/master/Example/APExtensions/UIViewController.png"/>
 
 - `hideKeyboardOnTouch` to hide keyboard on touch outside it
 

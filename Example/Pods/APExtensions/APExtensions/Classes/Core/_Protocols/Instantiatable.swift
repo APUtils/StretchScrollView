@@ -8,9 +8,7 @@
 
 import UIKit
 
-//-----------------------------------------------------------------------------
-// MARK: - InstantiatableFromXib
-//-----------------------------------------------------------------------------
+// ******************************* MARK: - InstantiatableFromXib
 
 /// Helps to instantiate object from xib file.
 public protocol InstantiatableFromXib {
@@ -29,41 +27,59 @@ public extension InstantiatableFromXib where Self: NSObject {
     }
 }
 
-//-----------------------------------------------------------------------------
-// MARK: - InstantiatableFromStoryboard
-//-----------------------------------------------------------------------------
+// ******************************* MARK: - InstantiatableFromStoryboard
 
 /// Helps to instantiate object from storyboard file.
 public protocol InstantiatableFromStoryboard: class {
+    static var storyboardName: String { get }
+    static var storyboardID: String { get }
     static func create() -> Self
-    static func createWithNavigationController() -> UINavigationController
+    static func createWithNavigationController() -> (UINavigationController, Self)
 }
 
 public extension InstantiatableFromStoryboard where Self: UIViewController {
     private static func controllerFromStoryboard<T>() -> T {
-        let storyboardName = className.replacingOccurrences(of: "ViewController", with: "")
-        return UIStoryboard(name: storyboardName, bundle: nil).instantiateInitialViewController() as! T
+        let storyboardName = self.storyboardName
+        if let initialVc = UIStoryboard(name: storyboardName, bundle: nil).instantiateInitialViewController() as? T {
+            return initialVc
+        } else {
+            return UIStoryboard(name: storyboardName, bundle: nil).instantiateViewController(withIdentifier: className) as! T
+        }
+    }
+    
+    /// Name of storyboard that contains this view controller.
+    /// If not specified uses view controller's class name without "ViewController" postfix.
+    public static var storyboardName: String {
+        return className.replacingOccurrences(of: "ViewController", with: "")
+    }
+    
+    /// View controller storyboard ID.
+    /// By default uses view controller's class name.
+    public static var storyboardID: String {
+        return className
     }
     
     /// Instantiates view controller from storyboard file.
-    /// Storyboard filename should be equal to view controller class name without "ViewControler" postfix.
+    /// By default uses view controller's class name without "ViewController" postfix for `storyboardName` and view controller's class name for `storyboardID`.
+    /// Implement `storyboardName` if you want to secify custom storyboard name.
+    /// Implement `storyboardID` if you want to specify custom storyboard ID.
     public static func create() -> Self {
         return controllerFromStoryboard()
     }
     
     /// Instantiates view controller from storyboard file wrapped into navigation controller.
-    /// Storyboard filename should be equal to view controller class name without "ViewControler" postfix.
-    public static func createWithNavigationController() -> UINavigationController {
+    /// By default uses view controller's class name without "ViewController" postfix for `storyboardName` and view controller's class name for `storyboardID`.
+    /// Implement `storyboardName` if you want to secify custom storyboard name.
+    /// Implement `storyboardID` if you want to specify custom storyboard ID.
+    public static func createWithNavigationController() -> (UINavigationController, Self) {
         let vc = create()
         let navigationVc = UINavigationController(rootViewController: vc)
         
-        return navigationVc
+        return (navigationVc, vc)
     }
 }
 
-//-----------------------------------------------------------------------------
-// MARK: - InstantiatableContentView
-//-----------------------------------------------------------------------------
+// ******************************* MARK: - InstantiatableContentView
 
 /// Helps to instantiate content view from storyboard file.
 public protocol InstantiatableContentView {

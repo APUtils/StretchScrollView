@@ -6,7 +6,8 @@
 //  Copyright (c) 2017 Anton Plebanovich. All rights reserved.
 //
 
-#import <APExtensions/APExtensions-Swift.h>
+@import UIKit;
+
 #import "ViewStateLoader.h"
 
 
@@ -21,7 +22,7 @@
 
 + (void)load {
     if ([UIViewController respondsToSelector:@selector(setupOnce)]) {
-        NSInteger result __unused = [UIViewController setupOnce];
+        (void)[UIViewController setupOnce];
     }
 }
 

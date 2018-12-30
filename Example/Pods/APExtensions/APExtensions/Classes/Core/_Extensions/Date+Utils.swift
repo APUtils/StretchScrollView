@@ -8,9 +8,7 @@
 
 import Foundation
 
-//-----------------------------------------------------------------------------
-// MARK: - Components
-//-----------------------------------------------------------------------------
+// ******************************* MARK: - Components
 
 public extension Date {
     /// Get yesterday's day start date. Uses user's time zone.
@@ -92,7 +90,7 @@ public extension Date {
     public var gmtDayBeginningDate: Date {
         let toGmtTimeInterval = TimeInterval(TimeZone.current.secondsFromGMT(for: self))
         
-        return Date(timeInterval: toGmtTimeInterval, since: self)
+        return Date(timeInterval: toGmtTimeInterval, since: startOfDay)
     }
     
     /// Checks if dates are on same day. Uses user's time zone.
@@ -101,9 +99,7 @@ public extension Date {
     }
 }
 
-//-----------------------------------------------------------------------------
-// MARK: - String Representation
-//-----------------------------------------------------------------------------
+// ******************************* MARK: - String Representation
 
 public extension Date {
     /// Simplification of getting string from date

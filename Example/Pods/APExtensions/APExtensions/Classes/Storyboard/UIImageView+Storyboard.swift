@@ -8,9 +8,7 @@
 
 import UIKit
 
-//-----------------------------------------------------------------------------
-// MARK: - Screen Fit
-//-----------------------------------------------------------------------------
+// ******************************* MARK: - Screen Fit
 
 /// Do not store previous image because it could cause memory hit
 private let keepPreviousImage = false
@@ -53,9 +51,7 @@ public extension UIImageView {
     }
 }
 
-//-----------------------------------------------------------------------------
-// MARK: - Localized Image
-//-----------------------------------------------------------------------------
+// ******************************* MARK: - Localized Image
 
 private var localizedImageNameAssociationKey = 0
 

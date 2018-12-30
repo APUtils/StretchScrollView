@@ -8,9 +8,7 @@
 
 import Foundation
 
-//-----------------------------------------------------------------------------
-// MARK: - Debug logs
-//-----------------------------------------------------------------------------
+// ******************************* MARK: - Debug logs
 
 private let timeFormatter: DateFormatter = {
     let timeFormatter = DateFormatter()

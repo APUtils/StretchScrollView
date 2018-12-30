@@ -16,34 +16,73 @@ public extension Array {
         
         return self[1]
     }
+    
+    /// Returns random element from array
+    public var random: Element? {
+        guard !isEmpty else { return nil }
+        
+        let index = Int(arc4random_uniform(UInt32(count)))
+        return self[index]
+    }
+    
+    /// Replaces last element with new element and returns replaced element.
+    @discardableResult
+    public mutating func replaceLast(_ element: Element) -> Element {
+        let lastElement = removeLast()
+        append(element)
+        
+        return lastElement
+    }
 }
 
-//-----------------------------------------------------------------------------
-// MARK: - Scripting
-//-----------------------------------------------------------------------------
+// ******************************* MARK: - Scripting
 
 public extension Array {
     /// Helper method to modify all value type objects in array
-    public mutating func modifyForEach(_ body: (_ index: Index, _ element: inout Element) -> ()) {
+    public mutating func modifyForEach(_ body: (_ index: Index, _ element: inout Element) throws -> ()) rethrows {
         for index in indices {
-            modifyElement(atIndex: index) { body(index, &$0) }
+            try modifyElement(atIndex: index) { try body(index, &$0) }
         }
     }
     
     /// Helper method to modify value type objects in array at specific index
-    public mutating func modifyElement(atIndex index: Index, _ modifyElement: (_ element: inout Element) -> ()) {
+    public mutating func modifyElement(atIndex index: Index, _ modifyElement: (_ element: inout Element) throws -> ()) rethrows {
         var element = self[index]
-        modifyElement(&element)
+        try modifyElement(&element)
         self[index] = element
     }
     
+    /// Helper method to enumerate all objects in array together with index
+    public func enumerateForEach(_ body: (_ index: Index, _ element: Element) throws -> ()) rethrows {
+        for index in indices {
+            try body(index, self[index])
+        }
+    }
+    
+    /// Helper method to map all objects in array together with index
+    public func enumerateMap<T>(_ body: (_ index: Index, _ element: Element) throws -> T) rethrows -> [T] {
+        var map: [T] = []
+        for index in indices {
+            map.append(try body(index, self[index]))
+        }
+        
+        return map
+    }
+    
+    /// Helper methods to remove object using closure
+    @discardableResult public mutating func remove(_ body: (_ element: Element) throws -> Bool) rethrows -> Element? {
+        guard let index = try index(where: body) else { return nil }
+        
+        return remove(at: index)
+    }
+    
     /// Helper method to filter out duplicates. Element will be filtered out if closure return true.
-    public func filterDuplicates(_ includeElement: @escaping (_ lhs: Element, _ rhs: Element) -> Bool) -> [Element] {
+    public func filterDuplicates(_ includeElement: (_ lhs: Element, _ rhs: Element) throws -> Bool) rethrows -> [Element] {
         var results = [Element]()
         
-        forEach { element in
-            let existingElements = results.filter {
-                return includeElement(element, $0)
+        try forEach { element in
+            let existingElements = try results.filter {
+                return try includeElement(element, $0)
             }
             if existingElements.count == 0 {
                 results.append(element)
@@ -53,32 +92,51 @@ public extension Array {
         return results
     }
     
-    public func enumerateForEach(_ body: (_ index: Index, _ element: Element) -> ()) {
+    /// Transforms an array to a dictionary using array elements as keys and transform result as values.
+    func dictionaryMap<T>(_ transform:(_ element: Iterator.Element) throws -> T?) rethrows -> [Iterator.Element: T] {
+        return try self.reduce(into: [Iterator.Element: T]()) { dictionary, element in
+            guard let value = try transform(element) else { return }
+            
+            dictionary[element] = value
+        }
+    }
+    
+    /// Groups array elements into dictionary using provided transform to determine element's key.
+    func group<K>(_ keyTransform: (Iterator.Element) throws -> K) rethrows -> [K: [Iterator.Element]] {
+        var dictionary = [K: [Iterator.Element]]()
         for index in indices {
-            body(index, self[index])
+            let element = self[index]
+            let key = try keyTransform(element)
+            var array = dictionary[key] ?? []
+            array.append(element)
+            dictionary[key] = array
+        }
+        
+        return dictionary
+    }
+    
+    public mutating func move(from: Index, to: Index) {
+        let element = remove(at: from)
+        insert(element, at: to)
+    }
+}
+
+public extension Array where Element: Equatable {
+    /// Helper methods to remove all objects that are equal to passed one.
+    public mutating func remove(_ element: Element) {
+        while let index = index(of: element) {
+            remove(at: index)
         }
     }
 }
 
-//-----------------------------------------------------------------------------
-// MARK: - Splitting
-//-----------------------------------------------------------------------------
+// ******************************* MARK: - Splitting
 
 public extension Array {
     /// Splits array into slices of specified size
-    public func splittedArray(splitSize: Int) -> [[Element]] {
-        if self.count <= splitSize {
-            return [self]
-        } else {
-            return [Array<Element>(self[0..<splitSize])] + splittedArray(Array<Element>(self[splitSize..<self.count]), splitSize: splitSize)
-        }
-    }
-    
-    private func splittedArray<T>(_ s: [T], splitSize: Int) -> [[T]] {
-        if s.count <= splitSize {
-            return [s]
-        } else {
-            return [Array<T>(s[0..<splitSize])] + splittedArray(Array<T>(s[splitSize..<s.count]), splitSize: splitSize)
+    func splittedArray(splitSize: Int) -> [[Element]] {
+        return stride(from: 0, to: count, by: splitSize).map {
+            Array(self[$0..<Swift.min($0 + splitSize, count)])
         }
     }
 }

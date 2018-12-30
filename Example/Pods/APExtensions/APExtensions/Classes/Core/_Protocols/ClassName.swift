@@ -12,11 +12,18 @@ import Foundation
 public protocol ClassName {
     /// Class name string
     @nonobjc static var className: String { get }
+    
+    /// Class name string
+    @nonobjc var className: String { get }
 }
 
 public extension ClassName {
     @nonobjc static var className: String {
         return String(describing: self)
+    }
+    
+    @nonobjc var className: String {
+        return String(describing: type(of: self))
     }
 }
 

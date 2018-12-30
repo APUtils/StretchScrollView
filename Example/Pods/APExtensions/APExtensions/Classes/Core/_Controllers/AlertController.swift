@@ -8,78 +8,67 @@
 
 import UIKit
 
-//-----------------------------------------------------------------------------
-// MARK: - Helper Class
-//-----------------------------------------------------------------------------
-
-private final class AlertRootViewController: UIViewController {
-    fileprivate var customPreferredStatusBarStyle = UIStatusBarStyle.lightContent
-    fileprivate var customPrefersStatusBarHidden = false
-    
-    override var prefersStatusBarHidden: Bool {
-        return customPrefersStatusBarHidden
-    }
-    
-    override var preferredStatusBarStyle : UIStatusBarStyle {
-        return customPreferredStatusBarStyle
-    }
-}
-
-//-----------------------------------------------------------------------------
-// MARK: - Class Implementation
-//-----------------------------------------------------------------------------
+// ******************************* MARK: - Class Implementation
 
 public final class AlertController: UIAlertController {
     
-    //-----------------------------------------------------------------------------
-    // MARK: - Private Properties
-    //-----------------------------------------------------------------------------
+    // ******************************* MARK: - Types
     
-    private lazy var rootVC: AlertRootViewController = {
-        let rootVC = AlertRootViewController()
-        let topVc = g_statusBarStyleTopViewController
+    public enum PresentationStyle {
+        /// Present in separate window
+        case window
         
-        rootVC.customPrefersStatusBarHidden = topVc?.prefersStatusBarHidden ?? false
-        
-        if (Bundle.main.object(forInfoDictionaryKey: "UIViewControllerBasedStatusBarAppearance") as! Bool?) ?? true {
-            rootVC.customPreferredStatusBarStyle = topVc?.preferredStatusBarStyle ?? .default
-        } else {
-            if let barStyle = topVc?.navigationController?.navigationBar.barStyle {
-                rootVC.customPreferredStatusBarStyle = barStyle == .black ? .lightContent : .default
-            }
-        }
-        
-        
-        return rootVC
-    }()
+        /// Present in key window from top presented controller
+        case topController
+    }
     
-    private lazy var alertWindow: UIWindow? = {
-        let alertWindow = UIWindow(frame: UIScreen.main.bounds)
-        alertWindow.windowLevel = UIWindowLevelAlert
-        alertWindow.rootViewController = self.rootVC
-        
-        return alertWindow
-    }()
+    // ******************************* MARK: - Classes Properties
     
-    //-----------------------------------------------------------------------------
-    // MARK: - UIViewController Methods
-    //-----------------------------------------------------------------------------
+    public static var presentationStyle: PresentationStyle = .window
+    
+    // ******************************* MARK: - Private Properties
+    
+    private lazy var alertWindow: UIWindow? = .createAlert()
+    
+    // ******************************* MARK: - UIViewController Methods
     
     override public func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         
-        alertWindow?.isHidden = true
-        alertWindow = nil
+        if AlertController.presentationStyle == .window {
+            alertWindow?.isHidden = true
+            alertWindow = nil
+        }
     }
     
-    //-----------------------------------------------------------------------------
-    // MARK: - Public Methods
-    //-----------------------------------------------------------------------------
+    // ******************************* MARK: - Public Methods
     
-    public func present(animated: Bool) {
+    public func present(animated: Bool, completion: (() -> Void)? = nil) {
+        if let popover = popoverPresentationController {
+            // Prevent crash by targeting bottom of the screen
+            if popover.sourceView == nil && popover.sourceRect == .zero {
+                if AlertController.presentationStyle == .window, let alertWindow = alertWindow {
+                    popover.sourceView = alertWindow
+                    popover.sourceRect = CGRect(x: alertWindow.bounds.size.width / 2, y: alertWindow.bounds.size.height, width: 0, height: 0)
+                } else if let view = g_topViewController?.view {
+                    popover.sourceView = view
+                    popover.sourceRect = CGRect(x: view.bounds.size.width / 2, y: view.bounds.size.height, width: 0, height: 0)
+                } else {
+                    print("AlertController: can not get sourceView and sourceRect for presentation")
+                    return
+                }
+            }
+        }
+        
         g_performInMain {
-            self.alertWindow?.makeKeyAndVisible()
-            self.alertWindow?.rootViewController?.present(self, animated: animated, completion: nil)
+            switch AlertController.presentationStyle {
+            case .window:
+                self.alertWindow?.makeKeyAndVisible()
+                self.alertWindow?.rootViewController?.present(self, animated: animated, completion: completion)
+                
+            case .topController:
+                g_topViewController?.present(self, animated: animated, completion: completion)
+            }
         }
     }
 }

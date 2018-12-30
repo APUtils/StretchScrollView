@@ -8,9 +8,7 @@
 
 import UIKit
 
-//-----------------------------------------------------------------------------
-// MARK: - Border
-//-----------------------------------------------------------------------------
+// ******************************* MARK: - Border
 
 public extension UIView {
     @IBInspectable public var borderColor: UIColor? {
@@ -48,9 +46,7 @@ public extension UIView {
     }
 }
 
-//-----------------------------------------------------------------------------
-// MARK: - Corner Radius
-//-----------------------------------------------------------------------------
+// ******************************* MARK: - Corner Radius
 
 public extension UIView {
     @IBInspectable public var cornerRadius: CGFloat {
@@ -63,9 +59,7 @@ public extension UIView {
     }
 }
 
-//-----------------------------------------------------------------------------
-// MARK: - Shadow
-//-----------------------------------------------------------------------------
+// ******************************* MARK: - Shadow
 
 public extension UIView {
     @IBInspectable public var shadowColor: UIColor? {

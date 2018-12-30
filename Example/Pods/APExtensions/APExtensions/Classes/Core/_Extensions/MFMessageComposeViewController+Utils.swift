@@ -8,9 +8,7 @@
 
 import MessageUI
 
-//-----------------------------------------------------------------------------
-// MARK: - Creation
-//-----------------------------------------------------------------------------
+// ******************************* MARK: - Creation
 
 public extension MFMessageComposeViewController {
     /// Creates controller and simplifies its dismissal

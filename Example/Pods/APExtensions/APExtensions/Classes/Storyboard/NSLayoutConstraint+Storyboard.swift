@@ -8,9 +8,7 @@
 
 import Foundation
 
-//-----------------------------------------------------------------------------
-// MARK: - Fit Screen
-//-----------------------------------------------------------------------------
+// ******************************* MARK: - Fit Screen
 
 private let roundConstantSize = false
 private var defaultConstantAssociationKey = 0
@@ -57,9 +55,7 @@ public extension NSLayoutConstraint {
     }
 }
 
-//-----------------------------------------------------------------------------
-// MARK: - One Pixel Width
-//-----------------------------------------------------------------------------
+// ******************************* MARK: - One Pixel Width
 
 public extension NSLayoutConstraint {
     /// Make one pixel size constraint

@@ -6,7 +6,12 @@
 //  Copyright (c) 2017 Anton Plebanovich. All rights reserved.
 //
 
+#if CORE
+#import <APExtensionsCore/APExtensionsCore-Swift.h>
+#else
 #import <APExtensions/APExtensions-Swift.h>
+#endif
+
 #import "APExtensionsLoader.h"
 
 
@@ -42,6 +47,20 @@ static int _count = 0;
         
         if (class_conformsToProtocol(class, protocol)) {
             [array addObject:class];
+        }
+    }
+    
+    return array;
+}
+
+// 0.015 on 5s
++ (NSArray<Class> * _Nonnull)getChildClassesForClass:(Class _Nonnull)class {
+    NSMutableArray<Class> *array = [NSMutableArray<Class> new];
+    for (int index = 0; index < _count; index++) {
+        Class currentClass = _allClasses[index];
+        
+        if (class_getSuperclass(currentClass) == class) {
+            [array addObject:currentClass];
         }
     }
     

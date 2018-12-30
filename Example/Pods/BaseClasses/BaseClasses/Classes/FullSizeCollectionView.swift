@@ -33,11 +33,20 @@ open class FullSizeCollectionView: CollectionView {
     }
     
     private func configure(newSize: CGSize) {
-        guard previousSize != newSize, let flowLayout = collectionViewLayout as? UICollectionViewFlowLayout else { return }
+        var withoutInsetsSize = newSize
+        if #available(iOS 11.0, *) {
+            withoutInsetsSize.width -= adjustedContentInset.left + adjustedContentInset.right
+            withoutInsetsSize.height -= adjustedContentInset.top + adjustedContentInset.bottom
+        } else {
+            withoutInsetsSize.width -= contentInset.left + contentInset.right
+            withoutInsetsSize.height -= contentInset.top + contentInset.bottom
+        }
+        
+        guard previousSize != withoutInsetsSize, let flowLayout = collectionViewLayout as? UICollectionViewFlowLayout else { return }
         
         previousSize = newSize
         
-        flowLayout.itemSize = newSize
+        flowLayout.itemSize = withoutInsetsSize
         collectionViewLayout.invalidateLayout()
     }
     

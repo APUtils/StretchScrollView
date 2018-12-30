@@ -7,8 +7,8 @@
 //
 
 import UIKit
-import MessageUI
 
+// ******************************* MARK: - Phone Call
 
 public extension UIApplication {
     /// Initiates call to `phone`
@@ -18,17 +18,28 @@ public extension UIApplication {
         
         shared.openURL(url)
     }
-    
-    /// Tries to send email with MFMailComposeViewController first. If can't uses mailto: url scheme
-    /// - parameter to: Addressee's email
-    public static func sendEmail(to: String) {
-        if let vc = MFMailComposeViewController.create(to: [to]) {
-            g_rootViewController.present(vc, animated: true, completion: nil)
-        } else {
-            let urlString = "mailto://\(to)"
-            guard let url = URL(string: urlString) else { return }
-            
-            shared.openURL(url)
+}
+
+// ******************************* MARK: - Background Task
+
+private var v_backgroundTaskIdentifier = UIBackgroundTaskIdentifier.invalid
+
+public extension UIApplication {
+    /// Starts background task if app is in background and task is not yet started.
+    public func startBackgroundTaskIfNeeded() {
+        guard UIApplication.shared.applicationState == .background else { return }
+        guard v_backgroundTaskIdentifier == .invalid else { return }
+        
+        v_backgroundTaskIdentifier = beginBackgroundTask {
+            self.stopBackgroundTaskIfNeeded()
         }
+    }
+    
+    /// Stops background task if not yet stopped.
+    public func stopBackgroundTaskIfNeeded() {
+        guard v_backgroundTaskIdentifier != .invalid else { return }
+        
+        endBackgroundTask(v_backgroundTaskIdentifier)
+        v_backgroundTaskIdentifier = .invalid
     }
 }

@@ -42,17 +42,17 @@ public func beginWith(_ startingSubstring: String) -> Predicate<String> {
     }
 }
 
-#if _runtime(_ObjC)
+#if os(macOS) || os(iOS) || os(tvOS) || os(watchOS)
 extension NMBObjCMatcher {
-    public class func beginWithMatcher(_ expected: Any) -> NMBObjCMatcher {
+    @objc public class func beginWithMatcher(_ expected: Any) -> NMBObjCMatcher {
         return NMBObjCMatcher(canMatchNil: false) { actualExpression, failureMessage in
-            let actual = try! actualExpression.evaluate()
+            let actual = try actualExpression.evaluate()
             if (actual as? String) != nil {
                 let expr = actualExpression.cast { $0 as? String }
-                return try! beginWith(expected as! String).matches(expr, failureMessage: failureMessage)
+                return try beginWith(expected as! String).matches(expr, failureMessage: failureMessage)
             } else {
                 let expr = actualExpression.cast { $0 as? NMBOrderedCollection }
-                return try! beginWith(expected).matches(expr, failureMessage: failureMessage)
+                return try beginWith(expected).matches(expr, failureMessage: failureMessage)
             }
         }
     }

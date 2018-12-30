@@ -12,9 +12,15 @@ import UIKit
 /// Text view with zero paddings between text and frame
 open class TextView: UITextView {
     
-    //-----------------------------------------------------------------------------
-    // MARK: - Initialization and Setup
-    //-----------------------------------------------------------------------------
+    // ******************************* MARK: - IBInspectable
+    
+    @IBInspectable public var textSideInset: CGFloat = 0 {
+        didSet {
+            configureInsets()
+        }
+    }
+    
+    // ******************************* MARK: - Initialization and Setup
     
     public override init(frame: CGRect, textContainer: NSTextContainer?) {
         super.init(frame: frame, textContainer: textContainer)
@@ -24,12 +30,28 @@ open class TextView: UITextView {
     
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+    }
+    
+    open override func awakeFromNib() {
+        super.awakeFromNib()
         
         setup()
     }
     
     private func setup() {
-        textContainerInset = UIEdgeInsets.zero
         textContainer.lineFragmentPadding = 0
+        
+        configure()
+    }
+    
+    // ******************************* MARK: - Configuration
+    
+    private func configure() {
+        configureInsets()
+    }
+    
+    private func configureInsets() {
+        let insets = UIEdgeInsets(top: 0, left: textSideInset, bottom: 0, right: textSideInset)
+        textContainerInset = insets
     }
 }

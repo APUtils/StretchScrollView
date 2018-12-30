@@ -8,9 +8,7 @@
 
 import UIKit
 
-//-----------------------------------------------------------------------------
-// MARK: - Sizes
-//-----------------------------------------------------------------------------
+// ******************************* MARK: - Sizes
 
 public extension UIView {
     /// View width
@@ -44,11 +42,15 @@ public extension UIView {
     }
 }
 
-//-----------------------------------------------------------------------------
-// MARK: - Animations
-//-----------------------------------------------------------------------------
+// ******************************* MARK: - Animations
 
 public extension UIView {
+    /// Checks if code runs inside animation closure
+    @available(iOS 9.0, *)
+    public static var isInAnimationClosure: Bool {
+        return inheritedAnimationDuration > 0
+    }
+    
     public func fadeInAnimated() {
         guard alpha != 1 else { return }
         
@@ -62,9 +64,7 @@ public extension UIView {
     }
 }
 
-//-----------------------------------------------------------------------------
-// MARK: - Utils
-//-----------------------------------------------------------------------------
+// ******************************* MARK: - Utils
 
 public extension UIView {
     /// Makes corner radius euqal to half of width or height
@@ -92,9 +92,7 @@ public extension UIView {
     }
 }
 
-//-----------------------------------------------------------------------------
-// MARK: - Sequence
-//-----------------------------------------------------------------------------
+// ******************************* MARK: - Sequence
 
 public extension UIView {
     /// Returns all view's subviews
@@ -112,9 +110,7 @@ public extension UIView {
     }
 }
 
-//-----------------------------------------------------------------------------
-// MARK: - Image
-//-----------------------------------------------------------------------------
+// ******************************* MARK: - Image
 
 public extension UIView {
     /// Creates image from view and adds overlay image at the center if provided
@@ -125,31 +121,35 @@ public extension UIView {
         layer.render(in: UIGraphicsGetCurrentContext()!)
         
         if let overlayImage = overlayImage {
-            var imageRect = CGRect(origin: CGPoint(), size: overlayImage.size)
-            imageRect.center = bounds.center
+            let imageWidth = overlayImage.size.width
+            let imageHeight = overlayImage.size.height
+            let imageRect = CGRect(x: bounds.midX - imageWidth / 2, y: bounds.midY - imageHeight / 2, width: imageWidth, height: imageHeight)
             overlayImage.draw(in: imageRect)
         }
         
-        let snapshotImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        let snapshotImage = UIGraphicsGetImageFromCurrentImageContext()!
         
         return snapshotImage
     }
 }
 
-//-----------------------------------------------------------------------------
-// MARK: - Responder Helpers
-//-----------------------------------------------------------------------------
+// ******************************* MARK: - Responder Helpers
 
 public extension UIView {
     /// Ends editing on view and all of it's subviews
     @IBAction public func endEditing() {
         endEditing(true)
     }
+    
+    /// Checks if window is not nil before calling becomeFirstResponder()
+    public func becomeFirstResponderIfPossible() {
+        guard window != nil else { return }
+        
+        becomeFirstResponder()
+    }
 }
 
-//-----------------------------------------------------------------------------
-// MARK: - Activity Indicator
-//-----------------------------------------------------------------------------
+// ******************************* MARK: - Activity Indicator
 
 private var showCounterKey = 0
 
@@ -163,28 +163,48 @@ public extension UIView {
         }
     }
     
+    /// Is activity indicator showing?
+    public var isShowingActivityIndicator: Bool {
+        return showCounter > 0
+    }
+    
+    /// Shows activity indicator.
+    /// It uses existing one if found in subviews.
+    /// Calls to -showActivityIndicator and -hideActivityIndicator have to be balanced or hide have to be forced.
     public func showActivityIndicator() {
         showCounter += 1
         
-        var activityIndicator: UIActivityIndicatorView! = subviews.flatMap({ $0 as? UIActivityIndicatorView }).last
-        if activityIndicator == nil { activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray) }
-        
-        addSubview(activityIndicator)
-        activityIndicator.center = CGPoint(x: bounds.midX, y: bounds.midY)
-        activityIndicator.autoresizingMask = [.flexibleTopMargin, .flexibleLeftMargin, .flexibleRightMargin, .flexibleBottomMargin]
+        var activityIndicator: UIActivityIndicatorView! = subviews.compactMap({ $0 as? UIActivityIndicatorView }).last
+        if activityIndicator == nil {
+            activityIndicator = UIActivityIndicatorView(style: .whiteLarge)
+            activityIndicator.color = .lightGray
+            addSubview(activityIndicator)
+            activityIndicator.center = CGPoint(x: bounds.midX, y: bounds.midY)
+            activityIndicator.autoresizingMask = [.flexibleTopMargin, .flexibleLeftMargin, .flexibleRightMargin, .flexibleBottomMargin]
+        }
+        activityIndicator.superview?.bringSubviewToFront(activityIndicator)
         
         if !activityIndicator.isAnimating {
             activityIndicator.startAnimating()
         }
     }
     
-    public func hideActivityIndicator() {
-        showCounter -= 1
+    /// Hides activity indicator.
+    /// Calls to -showActivityIndicator and -hideActivityIndicator have to be balanced or hide have to be forced.
+    /// - parameters:
+    ///   - force: Force activity indicator hide
+    public func hideActivityIndicator(force: Bool = false) {
+        if force {
+            showCounter = 0
+        } else {
+            showCounter -= 1
+        }
         
         if showCounter <= 0 {
-            let activityIndicator = subviews.flatMap({ $0 as? UIActivityIndicatorView }).first
+            let activityIndicator = subviews.compactMap({ $0 as? UIActivityIndicatorView }).first
             activityIndicator?.stopAnimating()
-            activityIndicator?.removeFromSuperview()
+            
+            showCounter = 0
         }
     }
 }

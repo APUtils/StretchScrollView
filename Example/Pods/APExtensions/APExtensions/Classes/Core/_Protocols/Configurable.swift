@@ -9,7 +9,8 @@
 import Foundation
 
 
+/// Usually views might conform to this protocol so it's possible to pass view model without typecasting.
 public protocol Configurable {
-    /// Usually cells might conform to this protocol so we just can pass view model without typecasting.
-    func configure(model: Any)
+    /// Pass view model to view so it can configure itself.
+    func configure(viewModel: Any)
 }

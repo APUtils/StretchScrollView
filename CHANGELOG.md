@@ -2,6 +2,17 @@
 All notable changes to this project will be documented in this file.
 `StretchScrollView` adheres to [Semantic Versioning](http://semver.org/).
 
+
+## [4.0.0](https://github.com/APUtils/StretchScrollView/releases/tag/4.0.0)
+Released on 12/30/2018.
+
+#### Added
+- Swift 4.2
+
+#### Fixed
+- Always bounce to enlarge even if there isn't enough content
+
+
 ## [3.0.4](https://github.com/APUtils/StretchScrollView/releases/tag/3.0.4)
 Released on 09/27/2017.
 

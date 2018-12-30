@@ -8,9 +8,7 @@
 
 import Foundation
 
-//-----------------------------------------------------------------------------
-// MARK: - Day Start Notifications
-//-----------------------------------------------------------------------------
+// ******************************* MARK: - Day Start Notifications
 
 public extension Notification.Name {
     /// Post on 0:00:00 every day so app can refresh it's data. For example change `Today` to `Yesterday` date formatter string.
@@ -34,29 +32,27 @@ public extension NotificationCenter {
             startTimer()
         }
         
-        g_sharedNotificationCenter.addObserver(self, selector: #selector(self.onDidBecomeActive(_:)), name: .UIApplicationDidBecomeActive, object: nil)
-        g_sharedNotificationCenter.addObserver(self, selector: #selector(self.onWillResignActive(_:)), name: .UIApplicationWillResignActive, object: nil)
+        g_sharedNotificationCenter.addObserver(self, selector: #selector(self.onDidBecomeActive(_:)), name: UIApplication.didBecomeActiveNotification, object: nil)
+        g_sharedNotificationCenter.addObserver(self, selector: #selector(self.onWillResignActive(_:)), name: UIApplication.willResignActiveNotification, object: nil)
     }
     
     public func stopDayNotifications() {
-        g_sharedNotificationCenter.removeObserver(self, name: .UIApplicationDidBecomeActive, object: nil)
-        g_sharedNotificationCenter.removeObserver(self, name: .UIApplicationWillResignActive, object: nil)
+        g_sharedNotificationCenter.removeObserver(self, name: UIApplication.didBecomeActiveNotification, object: nil)
+        g_sharedNotificationCenter.removeObserver(self, name: UIApplication.willResignActiveNotification, object: nil)
         
         stopTimer()
         
         fireDate = nil
     }
     
-    //-----------------------------------------------------------------------------
-    // MARK: - Timer
-    //-----------------------------------------------------------------------------
+    // ******************************* MARK: - Timer
     
     private func startTimer() {
         g_performInMain {
             guard let fireDate = fireDate else { return }
             
             dayTimer = Timer(fireAt: fireDate, interval: 0, target: self, selector: #selector(self.onTimer(_:)), userInfo: nil, repeats: false)
-            RunLoop.main.add(dayTimer!, forMode: .defaultRunLoopMode)
+            RunLoop.main.add(dayTimer!, forMode: .default)
         }
     }
     
@@ -81,9 +77,7 @@ public extension NotificationCenter {
         restartTimer()
     }
     
-    //-----------------------------------------------------------------------------
-    // MARK: - Notifications
-    //-----------------------------------------------------------------------------
+    // ******************************* MARK: - Notifications
     
     @objc private func onDidBecomeActive(_ notification: Notification) {
         if let fireDate = fireDate, fireDate < Date() {

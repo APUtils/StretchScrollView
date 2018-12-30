@@ -8,23 +8,10 @@
 
 import Foundation
 
-//-----------------------------------------------------------------------------
-// MARK: - isNilOrEmpty
-//-----------------------------------------------------------------------------
+// ******************************* MARK: - isNilOrEmpty
 
-// Array
-// TODO: Is it possible to make it instance method somehow?
-/// Check if array is nil or empty.
-public func isNilOrEmpty<T>(_ array: [T]?) -> Bool {
-    if let array = array, !array.isEmpty {
-        return false
-    } else {
-        return true
-    }
-}
-
-// Collection
-public extension Optional where Wrapped == Collection {
+// Collection (Array and Dictionary)
+public extension Optional where Wrapped: Collection {
     /// Check if object is nil or empty
     public var isNilOrEmpty: Bool {
         if let value = self, !value.isEmpty {
@@ -59,9 +46,7 @@ public extension Optional where Wrapped == Data {
     }
 }
 
-//-----------------------------------------------------------------------------
-// MARK: - Optional Arrays Equatable
-//-----------------------------------------------------------------------------
+// ******************************* MARK: - Optional Arrays Equatable
 
 public func ==<T>(lhs: [T]?, rhs: [T]?) -> Bool where T: Equatable {
     switch (lhs, rhs) {
@@ -76,5 +61,22 @@ public func !=<T>(lhs: [T]?, rhs: [T]?) -> Bool where T: Equatable {
     case (.none, .none): return false
     case (.some(let lhsValue), .some(let rhsValue)): return lhsValue != rhsValue
     default: return true
+    }
+}
+
+// ******************************* MARK: - CustomStringConvertible
+
+extension Optional: CustomStringConvertible {
+    public var description: String {
+        switch self {
+        case .some(let value):
+            if let description = (value as? CustomStringConvertible)?.description {
+                return description
+            } else {
+                return String(describing: value)
+            }
+            
+        case .none: return "nil"
+        }
     }
 }

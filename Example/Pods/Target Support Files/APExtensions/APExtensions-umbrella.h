@@ -11,7 +11,9 @@
 #endif
 
 #import "APExtensionsLoader.h"
+#import "APUtils.h"
 #import "APExtensionsLoader.h"
+#import "APUtils.h"
 
 FOUNDATION_EXPORT double APExtensionsVersionNumber;
 FOUNDATION_EXPORT const unsigned char APExtensionsVersionString[];

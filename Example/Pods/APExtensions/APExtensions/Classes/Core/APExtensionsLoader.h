@@ -11,4 +11,5 @@
 
 @interface APExtensionsLoader: NSObject
 + (NSArray<Class> * _Nonnull)getClassesConformToProtocol:(Protocol * _Nonnull)protocol;
++ (NSArray<Class> * _Nonnull)getChildClassesForClass:(Class _Nonnull)class;
 @end
