@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file.
 `StretchScrollView` adheres to [Semantic Versioning](http://semver.org/).
 
+## [4.1.0](https://github.com/APUtils/StretchScrollView/releases/tag/4.1.0)
+Released on 01/11/2019.
+
+#### Fixed
+- Carthage support
+
 
 ## [4.0.0](https://github.com/APUtils/StretchScrollView/releases/tag/4.0.0)
 Released on 12/30/2018.

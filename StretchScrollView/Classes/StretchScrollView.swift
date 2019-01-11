@@ -7,7 +7,12 @@
 //
 
 import UIKit
+
+#if COCOAPODS
 import APExtensions
+#else
+import APExtensionsViewState
+#endif
 
 //-----------------------------------------------------------------------------
 // MARK: - Constants
