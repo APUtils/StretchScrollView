@@ -23,4 +23,13 @@ extension UIView {
         
         return nil
     }
+    
+    /// Returns all view's subviews
+    var _allSubviews: [UIView] {
+        var allSubviews = self.subviews
+        
+        allSubviews.forEach { allSubviews.append(contentsOf: $0._allSubviews) }
+        
+        return allSubviews
+    }
 }

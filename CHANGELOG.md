@@ -3,6 +3,13 @@ All notable changes to this project will be documented in this file.
 `StretchScrollView` adheres to [Semantic Versioning](http://semver.org/).
 
 
+## [4.3.0](https://github.com/APUtils/StretchScrollView/releases/tag/4.3.0)
+Released on 01/14/2019.
+
+#### Added
+- Detection and management of enlarged scrollView
+
+
 ## [4.2.1](https://github.com/APUtils/StretchScrollView/releases/tag/4.2.1)
 Released on 01/14/2019.
 

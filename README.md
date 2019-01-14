@@ -29,7 +29,7 @@ Please check [official guide](https://github.com/Carthage/Carthage#if-youre-buil
 Cartfile:
 
 ```
-github "APUtils/StretchScrollView" ~> 4.2
+github "APUtils/StretchScrollView" ~> 4.3
 ```
 
 #### CocoaPods
@@ -38,7 +38,7 @@ StretchScrollView is available through [CocoaPods](http://cocoapods.org). To ins
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'StretchScrollView', '~> 4.2'
+pod 'StretchScrollView', '~> 4.3'
 ```
 
 ## Configuration
@@ -63,6 +63,8 @@ Example constraints setups:
 <img src="Example/StretchScrollView/constraints.png"/>
 
 <img src="Example/StretchScrollView/constraints2.png"/>
+
+For second setup if scroll view is enlarged it'll be automatically zoomed at center.
 
 ```swift
 /// StretchScrollView will manage navigation bar transparency by itself.

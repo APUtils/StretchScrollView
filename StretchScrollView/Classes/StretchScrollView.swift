@@ -198,6 +198,31 @@ public class StretchScrollView: UIScrollView {
             topConstraint.constant = newTopConstant
             leftConstraint.constant = newSidesConstant
             rightConstraint.constant = newSidesConstant
+            
+            if let _stretchedView = _stretchedView {
+                // Checking if there is nested UIScrollView to just its insets
+                var viewsToCheck = [_stretchedView]
+                viewsToCheck.append(contentsOf: _stretchedView._allSubviews)
+                let scrollViewSubview = viewsToCheck
+                    .compactMap { $0 as? UIScrollView }
+                    .first
+                
+                if let scrollViewSubview = scrollViewSubview, scrollViewSubview.contentSize.width > 0 {
+                    // Force stop scrolling so we won't have overlapping animations
+                    scrollViewSubview._forceStopScrolling()
+                    
+                    // Assure we are enlarging content
+                    scrollViewSubview._clampContentOffset()
+                    
+                    // Need to zoom at center. So need to preserve relative center before transform
+                    // and make relative center after transform the same.
+                    // Also assure relative center is clamped so we won't look outside of a content.
+                    let previousBoundsRelativeCenterX = scrollViewSubview._relativeCenter.x
+                    setNeedsLayout()
+                    layoutIfNeeded()
+                    scrollViewSubview._relativeCenter.x = previousBoundsRelativeCenterX
+                }
+            }
         }
     }
     
