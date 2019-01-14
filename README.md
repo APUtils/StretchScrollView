@@ -29,7 +29,7 @@ Please check [official guide](https://github.com/Carthage/Carthage#if-youre-buil
 Cartfile:
 
 ```
-github "APUtils/StretchScrollView"
+github "APUtils/StretchScrollView" ~> 4.1
 ```
 
 #### CocoaPods
@@ -38,7 +38,7 @@ StretchScrollView is available through [CocoaPods](http://cocoapods.org). To ins
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'StretchScrollView'
+pod 'StretchScrollView', '~> 4.1'
 ```
 
 ## Configuration

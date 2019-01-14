@@ -1,15 +1,15 @@
 PODS:
-  - APExtensions (5.0.0):
-    - APExtensions/Abstractions (= 5.0.0)
-    - APExtensions/Core (= 5.0.0)
-    - APExtensions/Storyboard (= 5.0.0)
-    - APExtensions/ViewConfiguration (= 5.0.0)
-    - APExtensions/ViewState (= 5.0.0)
-  - APExtensions/Abstractions (5.0.0)
-  - APExtensions/Core (5.0.0)
-  - APExtensions/Storyboard (5.0.0)
-  - APExtensions/ViewConfiguration (5.0.0)
-  - APExtensions/ViewState (5.0.0)
+  - APExtensions (5.0.1):
+    - APExtensions/Abstractions (= 5.0.1)
+    - APExtensions/Core (= 5.0.1)
+    - APExtensions/Storyboard (= 5.0.1)
+    - APExtensions/ViewConfiguration (= 5.0.1)
+    - APExtensions/ViewState (= 5.0.1)
+  - APExtensions/Abstractions (5.0.1)
+  - APExtensions/Core (5.0.1)
+  - APExtensions/Storyboard (5.0.1)
+  - APExtensions/ViewConfiguration (5.0.1)
+  - APExtensions/ViewState (5.0.1)
   - BaseClasses (3.0.0)
   - FBSnapshotTestCase (2.1.4):
     - FBSnapshotTestCase/SwiftSupport (= 2.1.4)
@@ -55,7 +55,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  APExtensions: 4b5b4db5dd452194a5f1b6fdb0450a058ec59d28
+  APExtensions: f921e817747d5f58cd78d3e0239407fa4e0cabce
   BaseClasses: d5530ec19ac1c7a09eecff738d6c20a40ec9b47f
   FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
   iOSSnapshotTestCase: 415bd84f9dbba4ff45fede49d800bc7332fbedac

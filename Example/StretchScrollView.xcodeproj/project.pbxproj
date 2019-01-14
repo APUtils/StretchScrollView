@@ -59,6 +59,8 @@
 		A01BC4B8417019BB3834CAF7 /* CHANGELOG.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = CHANGELOG.md; path = ../CHANGELOG.md; sourceTree = "<group>"; };
 		A4D03A549CB8FAECFFEAD8CF /* Pods-StretchScrollView_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StretchScrollView_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StretchScrollView_Example/Pods-StretchScrollView_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		B02A39331F34BF88002E29F0 /* podInstall.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = podInstall.command; sourceTree = "<group>"; };
+		B02C3D6921EC8B4C008DE799 /* DEPLOY PROCESS.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "DEPLOY PROCESS.md"; sourceTree = "<group>"; };
+		B02C3D6D21EC8C1B008DE799 /* checkBuild.command */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = checkBuild.command; path = ../checkBuild.command; sourceTree = "<group>"; };
 		B0A072CD1F39DF4A001B8CC6 /* contentMode.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = contentMode.png; sourceTree = "<group>"; };
 		B0A072D11F39E929001B8CC6 /* constraints2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = constraints2.png; sourceTree = "<group>"; };
 		B0A072D31F39EBAE001B8CC6 /* constraints.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = constraints.png; sourceTree = "<group>"; };
@@ -171,13 +173,15 @@
 				46C606709FE24B20C39B672D /* .gitignore */,
 				B4EEBC2CD7F5CD10A5AD6DA1 /* .travis.yml */,
 				A01BC4B8417019BB3834CAF7 /* CHANGELOG.md */,
-				8068D7C1D602F758D1E2EA08 /* StretchScrollView.podspec */,
+				B02C3D6D21EC8C1B008DE799 /* checkBuild.command */,
+				B02C3D6921EC8B4C008DE799 /* DEPLOY PROCESS.md */,
 				88EFA83E35A41E80A610B851 /* LICENSE */,
 				81FF47BB9B0F09FA4D544006 /* podCheck.command */,
 				B02A39331F34BF88002E29F0 /* podInstall.command */,
 				F0E910E8E6A00D7C17F0567A /* podPush.command */,
 				B0D3A02B1F798D4F0062AD2B /* podUpdate.command */,
 				CF654993D734B5AB8BCEB020 /* README.md */,
+				8068D7C1D602F758D1E2EA08 /* StretchScrollView.podspec */,
 			);
 			name = "Podspec Metadata";
 			sourceTree = "<group>";
