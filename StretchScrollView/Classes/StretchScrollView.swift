@@ -39,6 +39,13 @@ public class StretchScrollView: UIScrollView {
         case none
         case topAndHeight(topConstraint: NSLayoutConstraint, heightConstraint: NSLayoutConstraint, defaultHeight: CGFloat)
         case topAndSides(topConstraint: NSLayoutConstraint, leftConstraint: NSLayoutConstraint, rightConstraint: NSLayoutConstraint, aspectRatio: CGFloat)
+        
+        var isNone: Bool {
+            switch self {
+            case .none: return true
+            default: return false
+            }
+        }
     }
     
     //-----------------------------------------------------------------------------
@@ -58,7 +65,7 @@ public class StretchScrollView: UIScrollView {
     // MARK: - @IBOutlets
     //-----------------------------------------------------------------------------
     
-    @IBOutlet private weak var stretchedView: UIView!
+    @IBOutlet private weak var stretchedView: UIView?
     @IBOutlet private var fadeViews: [UIView]?
     
     //-----------------------------------------------------------------------------
@@ -66,7 +73,9 @@ public class StretchScrollView: UIScrollView {
     //-----------------------------------------------------------------------------
     
     private var resizeType: ResizeType = .none
+    private var _stretchedView: UIView?
     private var _fadeViews = NSHashTable<UIView>(options: [.weakMemory])
+    private var isSetupDone = false
     
     private var navigationControllerView: UIView? {
         return _viewController?.navigationController?.view
@@ -94,11 +103,22 @@ public class StretchScrollView: UIScrollView {
         navigationBarBackgroundView.removeFromSuperview()
     }
     
+    override public func awakeFromNib() {
+        super.awakeFromNib()
+        setup()
+    }
+    
     private func setup() {
+        guard !isSetupDone else {
+            print("StretchScrollView: Setup shouldn't be called twice")
+            return
+        }
+        
+        isSetupDone = true
         setupProperties()
         setupNotifications()
         setupNavigationBar()
-        setupImageViewConstraints()
+        detectResizeType()
         configure()
     }
     
@@ -111,8 +131,15 @@ public class StretchScrollView: UIScrollView {
         
         delegate = self
         
-        fadeViews?.forEach({ _fadeViews.add($0) })
-        fadeViews = nil
+        if let fadeViews = fadeViews {
+            fadeViews.forEach({ _fadeViews.add($0) })
+            self.fadeViews = nil
+        }
+        
+        if let stretchedView = stretchedView {
+            _stretchedView = stretchedView
+            self.stretchedView = nil
+        }
     }
     
     private func setupNotifications() {
@@ -134,53 +161,6 @@ public class StretchScrollView: UIScrollView {
         if #available(iOS 11.0, *) { _viewController?.navigationItem.largeTitleDisplayMode = .never }
         
         configureNavigationBarBackgroundView()
-    }
-    
-    private func setupImageViewConstraints() {
-        guard let superview = stretchedView.superview else { return }
-        
-        var topConstraint: NSLayoutConstraint?
-        var leadingConstraint: NSLayoutConstraint?
-        var trailingConstraint: NSLayoutConstraint?
-        var heightConstraint: NSLayoutConstraint?
-        var defaultHeight: CGFloat?
-        
-        for constraint in stretchedView.constraints {
-            if (constraint.firstItem === stretchedView && constraint.firstAttribute == .height) {
-                heightConstraint = constraint
-                defaultHeight = constraint.constant
-                break
-            }
-        }
-        
-        for constraint in superview.constraints {
-            if (constraint.firstItem === stretchedView && constraint.secondItem === superview && constraint.firstAttribute == .top) ||
-                (constraint.secondItem === stretchedView && constraint.firstItem === superview && constraint.secondAttribute == .top) {
-                
-                topConstraint = constraint
-            }
-            
-            if (constraint.firstItem === stretchedView && constraint.secondItem === superview && constraint.firstAttribute == .leading) ||
-                (constraint.secondItem === stretchedView && constraint.firstItem === superview && constraint.secondAttribute == .leading) {
-                
-                leadingConstraint = constraint
-            }
-            
-            if (constraint.firstItem === stretchedView && constraint.secondItem === superview && constraint.firstAttribute == .trailing) ||
-                (constraint.secondItem === stretchedView && constraint.firstItem === superview && constraint.secondAttribute == .trailing) {
-                
-                trailingConstraint = constraint
-            }
-        }
-        
-        if let topConstraint = topConstraint, let heightConstraint = heightConstraint, let defaultHeight = defaultHeight {
-            resizeType = .topAndHeight(topConstraint: topConstraint, heightConstraint: heightConstraint, defaultHeight: defaultHeight)
-        } else if let topConstraint = topConstraint, let leadingConstraint = leadingConstraint, let trailingConstraint = trailingConstraint {
-            let aspectRatio: CGFloat = stretchedView.bounds.width / stretchedView.bounds.height
-            resizeType = .topAndSides(topConstraint: topConstraint, leftConstraint: leadingConstraint, rightConstraint: trailingConstraint, aspectRatio: aspectRatio)
-        } else {
-            print("StretchScrollView: Unable to detect resize type")
-        }
     }
     
     //-----------------------------------------------------------------------------
@@ -260,12 +240,6 @@ public class StretchScrollView: UIScrollView {
     // MARK: - UIView Methods
     //-----------------------------------------------------------------------------
     
-    override public func awakeFromNib() {
-        super.awakeFromNib()
-        
-        setup()
-    }
-    
     public override func layoutSubviews() {
         super.layoutSubviews()
         
@@ -291,6 +265,20 @@ public class StretchScrollView: UIScrollView {
     // MARK: - Public Methods
     //-----------------------------------------------------------------------------
     
+    /// Sets stretched view. Also performs all needed setup.
+    /// Be sure to call this one only if you have to setup stretched view from code.
+    /// Should be called only once and only after all setup for view hierarchy, constraints and VCs composition is done.
+    public func setStretchedView(_ view: UIView) {
+        guard _stretchedView == nil else {
+            print("Stretched view can't be exchanged when it previously was set")
+            return
+        }
+        
+        _stretchedView = view
+        setup()
+    }
+    
+    /// Adds views to fade when scrolling to bottom. Safe to call at any time.
     public func addFadeViews(_ views: [UIView]) {
         views.forEach { _fadeViews.add($0) }
         configure()
@@ -369,6 +357,57 @@ public class StretchScrollView: UIScrollView {
         navigationBar?.isTranslucent = true
         navigationBar?.setBackgroundImage(UIImage(), for: .default)
         navigationBar?.shadowImage = UIImage()
+    }
+    
+    // ******************************* MARK: - Private Methods
+    
+    private func detectResizeType() {
+        guard resizeType.isNone else { return }
+        guard let stretchedView = _stretchedView else { return }
+        guard let superview = stretchedView.superview else { return }
+        
+        var topConstraint: NSLayoutConstraint?
+        var leadingConstraint: NSLayoutConstraint?
+        var trailingConstraint: NSLayoutConstraint?
+        var heightConstraint: NSLayoutConstraint?
+        var defaultHeight: CGFloat?
+        
+        for constraint in stretchedView.constraints {
+            if (constraint.firstItem === stretchedView && constraint.firstAttribute == .height) {
+                heightConstraint = constraint
+                defaultHeight = constraint.constant
+                break
+            }
+        }
+        
+        for constraint in superview.constraints {
+            if (constraint.firstItem === stretchedView && constraint.secondItem === superview && constraint.firstAttribute == .top) ||
+                (constraint.secondItem === stretchedView && constraint.firstItem === superview && constraint.secondAttribute == .top) {
+                
+                topConstraint = constraint
+            }
+            
+            if (constraint.firstItem === stretchedView && constraint.secondItem === superview && constraint.firstAttribute == .leading) ||
+                (constraint.secondItem === stretchedView && constraint.firstItem === superview && constraint.secondAttribute == .leading) {
+                
+                leadingConstraint = constraint
+            }
+            
+            if (constraint.firstItem === stretchedView && constraint.secondItem === superview && constraint.firstAttribute == .trailing) ||
+                (constraint.secondItem === stretchedView && constraint.firstItem === superview && constraint.secondAttribute == .trailing) {
+                
+                trailingConstraint = constraint
+            }
+        }
+        
+        if let topConstraint = topConstraint, let heightConstraint = heightConstraint, let defaultHeight = defaultHeight {
+            resizeType = .topAndHeight(topConstraint: topConstraint, heightConstraint: heightConstraint, defaultHeight: defaultHeight)
+        } else if let topConstraint = topConstraint, let leadingConstraint = leadingConstraint, let trailingConstraint = trailingConstraint {
+            let aspectRatio: CGFloat = stretchedView.bounds.width / stretchedView.bounds.height
+            resizeType = .topAndSides(topConstraint: topConstraint, leftConstraint: leadingConstraint, rightConstraint: trailingConstraint, aspectRatio: aspectRatio)
+        } else {
+            print("StretchScrollView: Unable to detect resize type")
+        }
     }
 }
 

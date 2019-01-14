@@ -4,7 +4,6 @@
 - Run `podUpdate.command`
 - Update CHANGELOG.md
 - Update README.md with new version if needed
-- Run `updateDocs.command`
 - Push changes in git
 - Add git tag
 - Run `podPush.command`
