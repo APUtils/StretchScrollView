@@ -105,7 +105,11 @@ public class StretchScrollView: UIScrollView {
     
     override public func awakeFromNib() {
         super.awakeFromNib()
-        setup()
+        
+        if stretchedView != nil {
+            // Setup from storybord flow
+            setup()
+        }
     }
     
     private func setup() {
@@ -269,11 +273,12 @@ public class StretchScrollView: UIScrollView {
     /// Be sure to call this one only if you have to setup stretched view from code.
     /// Should be called only once and only after all setup for view hierarchy, constraints and VCs composition is done.
     public func setStretchedView(_ view: UIView) {
-        guard _stretchedView == nil else {
+        guard _stretchedView == nil && stretchedView == nil else {
             print("Stretched view can't be exchanged when it previously was set")
             return
         }
         
+        // Setup from code flow
         _stretchedView = view
         setup()
     }
