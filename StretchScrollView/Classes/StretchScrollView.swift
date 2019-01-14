@@ -178,6 +178,8 @@ public class StretchScrollView: UIScrollView {
         } else if let topConstraint = topConstraint, let leadingConstraint = leadingConstraint, let trailingConstraint = trailingConstraint {
             let aspectRatio: CGFloat = stretchedView.bounds.width / stretchedView.bounds.height
             resizeType = .topAndSides(topConstraint: topConstraint, leftConstraint: leadingConstraint, rightConstraint: trailingConstraint, aspectRatio: aspectRatio)
+        } else {
+            print("StretchScrollView: Unable to detect resize type")
         }
     }
     
