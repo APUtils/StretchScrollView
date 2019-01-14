@@ -1,6 +1,0 @@
-framework module Pods_StretchScrollView_Tests {
-  umbrella header "Pods-StretchScrollView_Tests-umbrella.h"
-
-  export *
-  module * { export * }
-}
