@@ -4,10 +4,6 @@ platform :ios, '8.0'
 # Add pods as frameworks so we could add obj-c and swift 3.0 pods
 use_frameworks!
 
-# Cartage support
-install! 'cocoapods',
-    :share_schemes_for_development_pods => true
-
 
 target 'StretchScrollView_Example' do
     pod 'APExtensions'
@@ -42,11 +38,4 @@ post_install do |installer|
             end
         end
     end
-    
-    # Carthage support.
-    # It puts `StretchScrollView.swift` into public headers so @IBInspectable won't be stripped out.
-    additionHeader = installer.pods_project.development_pods['StretchScrollView/StretchScrollView.swift']
-    headersBuildPhase = installer.pods_project.targets.select{ |x| x.name == 'StretchScrollView' }[0].headers_build_phase
-    buildFile = headersBuildPhase.add_file_reference(additionHeader)
-    buildFile.settings = { 'ATTRIBUTES' => ['Public']}
 end
