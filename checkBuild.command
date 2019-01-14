@@ -11,7 +11,7 @@ set -o pipefail && xcodebuild -workspace "Example/StretchScrollView.xcworkspace"
 
 echo
 
-carthage build --no-skip-current
+xcodebuild -project "StretchScrollView.xcodeproj" -alltargets  -sdk iphonesimulator12.1 | xcpretty
 
 echo ""
 echo "SUCCESS!"
