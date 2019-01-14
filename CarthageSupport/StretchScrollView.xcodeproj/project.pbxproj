@@ -114,7 +114,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B0C6EB0221E8D467004664FF /* Build configuration list for PBXNativeTarget "StretchScrollView" */;
 			buildPhases = (
-				6D181D55F29A2528B6C1E876 /* Carthage Install */,
 				B0C6EAF521E8D467004664FF /* Headers */,
 				B0C6EAF621E8D467004664FF /* Sources */,
 				B0C6EAF721E8D467004664FF /* Frameworks */,
@@ -172,24 +171,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		6D181D55F29A2528B6C1E876 /* Carthage Install */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Carthage Install";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/bash;
-			shellScript = "source ~/.bash_profile\nenv -i GITHUB_ACCESS_TOKEN=\"$GITHUB_ACCESS_TOKEN\" DEVELOPER_DIR=\"$DEVELOPER_DIR\" PATH=\"$PATH\" bash \"Scripts/Carthage/carthageInstall.command\"\n";
-		};
 		760648ED1CB2FBC1E6022A67 /* Carthage Copy */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
