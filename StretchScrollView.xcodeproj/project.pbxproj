@@ -8,21 +8,22 @@
 
 /* Begin PBXBuildFile section */
 		1E433957604612529AE9C358 /* APExtensionsViewState.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F98D752BE149C213DC2CF86E /* APExtensionsViewState.framework */; };
+		B02C3D7321EC9AC8008DE799 /* UIView+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02C3D6F21EC9AC8008DE799 /* UIView+Utils.swift */; };
+		B02C3D7521EC9AC8008DE799 /* UIViewController+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02C3D7121EC9AC8008DE799 /* UIViewController+Utils.swift */; };
+		B02C3D7621EC9AC8008DE799 /* StretchScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02C3D7221EC9AC8008DE799 /* StretchScrollView.swift */; };
+		B02C3D7721EC9AE1008DE799 /* StretchScrollView.swift in Headers */ = {isa = PBXBuildFile; fileRef = B02C3D7221EC9AC8008DE799 /* StretchScrollView.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 		B0C6EAFF21E8D467004664FF /* StretchScrollView.h in Headers */ = {isa = PBXBuildFile; fileRef = B0C6EAFD21E8D467004664FF /* StretchScrollView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B0C6EB0A21E8D595004664FF /* UIView+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C6EB0621E8D595004664FF /* UIView+Utils.swift */; };
-		B0C6EB0C21E8D595004664FF /* UIViewController+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C6EB0821E8D595004664FF /* UIViewController+Utils.swift */; };
-		B0C6EB0D21E8D595004664FF /* StretchScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C6EB0921E8D595004664FF /* StretchScrollView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0FE4C5426D9336ED3448EF31 /* carthageUpdate.command */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; name = carthageUpdate.command; path = Scripts/Carthage/carthageUpdate.command; sourceTree = "<group>"; };
 		17095833951C17C99BC3BEED /* carthageRemove.command */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; name = carthageRemove.command; path = Scripts/Carthage/carthageRemove.command; sourceTree = "<group>"; };
+		B02C3D6F21EC9AC8008DE799 /* UIView+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Utils.swift"; sourceTree = "<group>"; };
+		B02C3D7121EC9AC8008DE799 /* UIViewController+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Utils.swift"; sourceTree = "<group>"; };
+		B02C3D7221EC9AC8008DE799 /* StretchScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StretchScrollView.swift; sourceTree = "<group>"; };
 		B0C6EAFA21E8D467004664FF /* StretchScrollView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = StretchScrollView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0C6EAFD21E8D467004664FF /* StretchScrollView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StretchScrollView.h; sourceTree = "<group>"; };
 		B0C6EAFE21E8D467004664FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B0C6EB0621E8D595004664FF /* UIView+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Utils.swift"; sourceTree = "<group>"; };
-		B0C6EB0821E8D595004664FF /* UIViewController+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Utils.swift"; sourceTree = "<group>"; };
-		B0C6EB0921E8D595004664FF /* StretchScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StretchScrollView.swift; sourceTree = "<group>"; };
 		F98D752BE149C213DC2CF86E /* APExtensionsViewState.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = APExtensionsViewState.framework; path = Carthage/Build/iOS/APExtensionsViewState.framework; sourceTree = "<group>"; };
 		FB3A6DB403898FAF9B36C60C /* carthageAdd.command */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; name = carthageAdd.command; path = Scripts/Carthage/carthageAdd.command; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -39,6 +40,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B02C3D6E21EC9AC8008DE799 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				B02C3D6F21EC9AC8008DE799 /* UIView+Utils.swift */,
+				B02C3D7121EC9AC8008DE799 /* UIViewController+Utils.swift */,
+				B02C3D7221EC9AC8008DE799 /* StretchScrollView.swift */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
 		B0C6EAF021E8D467004664FF = {
 			isa = PBXGroup;
 			children = (
@@ -59,22 +70,11 @@
 		B0C6EAFC21E8D467004664FF /* StretchScrollView */ = {
 			isa = PBXGroup;
 			children = (
-				B0C6EB0521E8D595004664FF /* Classes */,
+				B02C3D6E21EC9AC8008DE799 /* Classes */,
 				B0C6EAFD21E8D467004664FF /* StretchScrollView.h */,
 				B0C6EAFE21E8D467004664FF /* Info.plist */,
 			);
 			path = StretchScrollView;
-			sourceTree = "<group>";
-		};
-		B0C6EB0521E8D595004664FF /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				B0C6EB0621E8D595004664FF /* UIView+Utils.swift */,
-				B0C6EB0821E8D595004664FF /* UIViewController+Utils.swift */,
-				B0C6EB0921E8D595004664FF /* StretchScrollView.swift */,
-			);
-			name = Classes;
-			path = ../../StretchScrollView/Classes;
 			sourceTree = "<group>";
 		};
 		DA5CA6E4FF0DB59F4937D477 /* Frameworks */ = {
@@ -104,6 +104,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B0C6EAFF21E8D467004664FF /* StretchScrollView.h in Headers */,
+				B02C3D7721EC9AE1008DE799 /* StretchScrollView.swift in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -198,9 +199,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B0C6EB0C21E8D595004664FF /* UIViewController+Utils.swift in Sources */,
-				B0C6EB0D21E8D595004664FF /* StretchScrollView.swift in Sources */,
-				B0C6EB0A21E8D595004664FF /* UIView+Utils.swift in Sources */,
+				B02C3D7521EC9AC8008DE799 /* UIViewController+Utils.swift in Sources */,
+				B02C3D7621EC9AC8008DE799 /* StretchScrollView.swift in Sources */,
+				B02C3D7321EC9AC8008DE799 /* UIView+Utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
