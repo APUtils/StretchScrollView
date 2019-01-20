@@ -369,42 +369,28 @@ Blizzard Entertainment began planning StarCraft in 1995, with a development team
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yTm-nx-A1N" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1112.3333333333333"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1192.3333333333333"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="G1T-dN-eNb">
-                                                <rect key="frame" x="16" y="0.0" width="382" height="1112.3333333333333"/>
+                                                <rect key="frame" x="16" y="0.0" width="382" height="1192.3333333333333"/>
                                                 <subviews>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f3l-Dn-WfI">
-                                                        <rect key="frame" x="15.333333333333343" y="0.0" width="351.66666666666663" height="240"/>
-                                                        <subviews>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sarah" translatesAutoresizingMaskIntoConstraints="NO" id="H6U-lt-l58">
-                                                                <rect key="frame" x="0.0" y="0.0" width="351.66666666666669" height="240"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="height" constant="240" id="NUa-1K-YOc"/>
-                                                                </constraints>
-                                                            </imageView>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sarah Kerrigan" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LT7-wd-PdH">
-                                                                <rect key="frame" x="20" y="90" width="311.66666666666669" height="60"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="50"/>
-                                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                                <nil key="highlightedColor"/>
-                                                                <userDefinedRuntimeAttributes>
-                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="fitScreenSize" value="YES"/>
-                                                                </userDefinedRuntimeAttributes>
-                                                            </label>
-                                                        </subviews>
-                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sarah" translatesAutoresizingMaskIntoConstraints="NO" id="H6U-lt-l58">
+                                                        <rect key="frame" x="68.666666666666686" y="0.0" width="245" height="240"/>
                                                         <constraints>
-                                                            <constraint firstItem="LT7-wd-PdH" firstAttribute="centerX" secondItem="f3l-Dn-WfI" secondAttribute="centerX" id="5A6-z9-SnX"/>
-                                                            <constraint firstItem="H6U-lt-l58" firstAttribute="top" secondItem="f3l-Dn-WfI" secondAttribute="top" id="Lzp-27-Ifz"/>
-                                                            <constraint firstAttribute="trailing" secondItem="H6U-lt-l58" secondAttribute="trailing" id="XZw-U0-Esc"/>
-                                                            <constraint firstAttribute="bottom" secondItem="H6U-lt-l58" secondAttribute="bottom" id="ZYM-2Z-6SC"/>
-                                                            <constraint firstItem="LT7-wd-PdH" firstAttribute="centerY" secondItem="f3l-Dn-WfI" secondAttribute="centerY" id="aUD-P7-mey"/>
-                                                            <constraint firstItem="H6U-lt-l58" firstAttribute="leading" secondItem="f3l-Dn-WfI" secondAttribute="leading" id="ipx-tF-F7N"/>
+                                                            <constraint firstAttribute="height" constant="240" id="NUa-1K-YOc"/>
                                                         </constraints>
-                                                    </view>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sarah Kerrigan" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LT7-wd-PdH">
+                                                        <rect key="frame" x="35.333333333333343" y="260" width="311.66666666666663" height="60"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="50"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <nil key="highlightedColor"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="fitScreenSize" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KbM-hC-u2C">
-                                                        <rect key="frame" x="0.0" y="260.00000000000006" width="382" height="852.33333333333348"/>
+                                                        <rect key="frame" x="0.0" y="340.00000000000006" width="382" height="852.33333333333348"/>
                                                         <string key="text">StarCraft is a military science fiction media franchise, created by Chris Metzen and James Phinney and owned by Blizzard Entertainment. The series, set in the beginning of the 26th century, centers on a galactic struggle for dominance among four species—the adaptable and mobile Terrans, the ever-evolving insectoid Zerg, the powerfully enigmatic Protoss, and the "god-like" Xel'Naga creator race—in a distant part of the Milky Way galaxy known as the Koprulu Sector. The series debuted with the video game StarCraft in 1998. Since then it has grown to include a number of other games as well as eight novelizations, two Amazing Stories articles, a board game, and other licensed merchandise such as collectible statues and toys.
 
 Blizzard Entertainment began planning StarCraft in 1995, with a development team led by Metzen and Phinney. The game debuted at E3 1996, and used a modified Warcraft II game engine. StarCraft also marked the creation of Blizzard Entertainment's film department; the game introduced high quality cinematics integral to the storyline of the series. Most of the original development team for StarCraft returned to work on the game's official expansion pack, Brood War; the game's development began shortly after StarCraft was released. In 2001, StarCraft: Ghost began development under Nihilistic Software. Unlike the previous real-time strategy games in the series, Ghost was to be a stealth-action game. After three years of development, work on the game was postponed in 2004. Development of StarCraft II: Wings of Liberty began in 2003; the game was later announced in May 2007 and was released in July 2010. The StarCraft II franchise continued with the StarCraft II: Heart of the Swarm expansion, which was released in March 2013. The third StarCraft II installment, StarCraft II: Legacy of the Void, released in November 2015.</string>

@@ -394,11 +394,13 @@ public class StretchScrollView: UIScrollView {
     private func detectResizeType() {
         guard resizeType.isNone else { return }
         guard let stretchedView = _stretchedView else { return }
-        guard var superview = stretchedView.superview else { return }
+        var childView = stretchedView
+        guard var superview = childView.superview else { return }
         
         // Check if stretched view inside UIStackView and use it's constraints instead.
         if #available(iOS 9.0, *) {
             if let stackView = superview as? UIStackView, let stackViewSuperview = stackView.superview {
+                childView = stackView
                 superview = stackViewSuperview
             }
         }
@@ -417,21 +419,25 @@ public class StretchScrollView: UIScrollView {
             }
         }
         
+        // TODO: If view is inside UIStackView - just use it and go next
+        // TODO: Get top constraint and goto view that uses it
+        // TODO: If view is StretchScrollView - use that top constraint
+        
         for constraint in superview.constraints {
-            if (constraint.firstItem === stretchedView && constraint.secondItem === superview && constraint.firstAttribute == .top) ||
-                (constraint.secondItem === stretchedView && constraint.firstItem === superview && constraint.secondAttribute == .top) {
+            if (constraint.firstItem === childView && constraint.secondItem === superview && constraint.firstAttribute == .top) ||
+                (constraint.secondItem === childView && constraint.firstItem === superview && constraint.secondAttribute == .top) {
                 
                 topConstraint = constraint
             }
             
-            if (constraint.firstItem === stretchedView && constraint.secondItem === superview && constraint.firstAttribute == .leading) ||
-                (constraint.secondItem === stretchedView && constraint.firstItem === superview && constraint.secondAttribute == .leading) {
+            if (constraint.firstItem === childView && constraint.secondItem === superview && constraint.firstAttribute == .leading) ||
+                (constraint.secondItem === childView && constraint.firstItem === superview && constraint.secondAttribute == .leading) {
                 
                 leadingConstraint = constraint
             }
             
-            if (constraint.firstItem === stretchedView && constraint.secondItem === superview && constraint.firstAttribute == .trailing) ||
-                (constraint.secondItem === stretchedView && constraint.firstItem === superview && constraint.secondAttribute == .trailing) {
+            if (constraint.firstItem === childView && constraint.secondItem === superview && constraint.firstAttribute == .trailing) ||
+                (constraint.secondItem === childView && constraint.firstItem === superview && constraint.secondAttribute == .trailing) {
                 
                 trailingConstraint = constraint
             }
@@ -440,7 +446,7 @@ public class StretchScrollView: UIScrollView {
         if let topConstraint = topConstraint, let heightConstraint = heightConstraint, let defaultHeight = defaultHeight {
             resizeType = .topAndHeight(topConstraint: topConstraint, heightConstraint: heightConstraint, defaultHeight: defaultHeight)
         } else if let topConstraint = topConstraint, let leadingConstraint = leadingConstraint, let trailingConstraint = trailingConstraint {
-            let aspectRatio: CGFloat = stretchedView.bounds.width / stretchedView.bounds.height
+            let aspectRatio: CGFloat = childView.bounds.width / childView.bounds.height
             resizeType = .topAndSides(topConstraint: topConstraint, leftConstraint: leadingConstraint, rightConstraint: trailingConstraint, aspectRatio: aspectRatio)
         } else {
             print("StretchScrollView: Unable to detect resize type")
