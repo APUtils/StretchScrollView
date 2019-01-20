@@ -394,7 +394,14 @@ public class StretchScrollView: UIScrollView {
     private func detectResizeType() {
         guard resizeType.isNone else { return }
         guard let stretchedView = _stretchedView else { return }
-        guard let superview = stretchedView.superview else { return }
+        guard var superview = stretchedView.superview else { return }
+        
+        // Check if stretched view inside UIStackView and use it's constraints instead.
+        if #available(iOS 9.0, *) {
+            if let stackView = superview as? UIStackView, let stackViewSuperview = stackView.superview {
+                superview = stackViewSuperview
+            }
+        }
         
         var topConstraint: NSLayoutConstraint?
         var leadingConstraint: NSLayoutConstraint?

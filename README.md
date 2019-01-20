@@ -66,6 +66,8 @@ Example constraints setups:
 
 For second setup if scroll view is enlarged it'll be automatically zoomed at center.
 
+Also works when stretched view is inside `UIStackView` and have height constraint.
+
 ```swift
 /// StretchScrollView will manage navigation bar transparency by itself.
 /// You could disable this option to manage it by yourself or to disable navigation bar animations.
