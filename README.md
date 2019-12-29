@@ -32,6 +32,8 @@ Cartfile:
 github "APUtils/StretchScrollView" ~> 4.3
 ```
 
+Then add both `StretchScrollView` and `APExtensionsViewState` frameworks to your project.
+
 #### CocoaPods
 
 StretchScrollView is available through [CocoaPods](http://cocoapods.org). To install
