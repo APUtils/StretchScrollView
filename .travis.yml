@@ -11,6 +11,14 @@ before_install:
 - pod repo update
 - pod install --project-directory=Example
 script:
-- set -o pipefail && xcodebuild test -workspace Example/StretchScrollView.xcworkspace -scheme StretchScrollView-Example -destination "platform=iOS Simulator,id=B9ADB233-F32D-433C-B53B-5D21132BE7B6" ONLY_ACTIVE_ARCH=NO | xcpretty
+- simulator_id="$(xcrun simctl list devices available | grep "iPhone SE" | tail -1 | sed -e "s/.*iPhone SE (//g" -e "s/).*//g")"
+- if [ -z "${simulator_id}" ]; then
+-     echo "error: Please install 'iPhone SE' simulator."
+-     echo " "
+-     exit 1
+- else
+-     echo "Using iPhone SE simulator with ID: '${simulator_id}'"
+- fi
+- set -o pipefail && xcodebuild test -workspace Example/StretchScrollView.xcworkspace -scheme StretchScrollView-Example -destination "platform=iOS Simulator,id=${simulator_id}" ONLY_ACTIVE_ARCH=NO | xcpretty
 - pod lib lint
 - pod spec lint
