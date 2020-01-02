@@ -1,4 +1,9 @@
-require 'xcodeproj'
+begin
+  require 'xcodeproj'
+rescue LoadError => e
+  raise unless e.message =~ /some_gem/
+  puts 'please install xcodeproj first!'
+end
 
 # Input
 def prompt(*args)
@@ -102,8 +107,8 @@ if !target_names
     print "\n"
     print "\n"
 
-    target_names_to_setup = prompt "Please specify targets you want to setup separating by space: "
-    target_names = target_names_to_setup.split(' ')
+    target_names_to_setup = prompt "Please specify targets you want to setup separating by comma: "
+    target_names = target_names_to_setup.split(',')
     
     if target_names.to_s.empty?
         abort("\Target name is required\n".red)

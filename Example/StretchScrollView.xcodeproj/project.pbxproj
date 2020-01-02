@@ -340,7 +340,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-StretchScrollView_Tests/Pods-StretchScrollView_Tests-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-StretchScrollView_Tests/Pods-StretchScrollView_Tests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/FBSnapshotTestCase/FBSnapshotTestCase.framework",
 				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
 				"${BUILT_PRODUCTS_DIR}/Nimble-Snapshots/Nimble_Snapshots.framework",
@@ -356,7 +356,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-StretchScrollView_Tests/Pods-StretchScrollView_Tests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-StretchScrollView_Tests/Pods-StretchScrollView_Tests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		64AF88E02EC04FD174EF39BB /* [CP] Check Pods Manifest.lock */ = {
@@ -401,20 +401,22 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-StretchScrollView_Example/Pods-StretchScrollView_Example-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-StretchScrollView_Example/Pods-StretchScrollView_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/APExtensions/APExtensions.framework",
 				"${BUILT_PRODUCTS_DIR}/BaseClasses/BaseClasses.framework",
 				"${BUILT_PRODUCTS_DIR}/StretchScrollView/StretchScrollView.framework",
+				"${BUILT_PRODUCTS_DIR}/ViewState/ViewState.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/APExtensions.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BaseClasses.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/StretchScrollView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ViewState.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-StretchScrollView_Example/Pods-StretchScrollView_Example-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-StretchScrollView_Example/Pods-StretchScrollView_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

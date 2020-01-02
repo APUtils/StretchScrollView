@@ -38,5 +38,5 @@ StretchScrollView provides functionality to enlarge title image and hide overlay
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   s.frameworks = 'Foundation', 'UIKit'
-  s.dependency 'APExtensions/ViewState', '>= 3.4.5'
+  s.dependency 'ViewState', '>= 1.0.0'
 end

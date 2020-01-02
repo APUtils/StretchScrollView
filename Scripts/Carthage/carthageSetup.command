@@ -2,9 +2,6 @@
 
 ### Script to setup Carthage for a project target ###
 
-# Any subsequent(*) commands which fail will cause the shell script to exit immediately
-set -e
-
 # Colors Constants
 red_color='\033[0;31m'
 green_color='\033[0;32m'
@@ -21,6 +18,13 @@ base_dir=$(dirname "$0")
 cd "$base_dir"
 cd ..
 cd ..
+
+# Requires `xcodeproj` installed - https://github.com/CocoaPods/Xcodeproj
+# sudo gem install xcodeproj
+hash xcodeproj 2>/dev/null || { printf >&2 "\n${red_color}Requires xcodeproj installed - 'sudo gem install xcodeproj'${no_color}\n\n"; exit 1; }
+
+# Any subsequent(*) commands which fail will cause the shell script to exit immediately
+set -e
 
 # Project Update
 touch Cartfile

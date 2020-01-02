@@ -1,4 +1,9 @@
-require 'xcodeproj'
+begin
+  require 'xcodeproj'
+rescue LoadError => e
+  raise unless e.message =~ /some_gem/
+  puts 'please install xcodeproj first!'
+end
 
 # Input
 def prompt(*args)
@@ -13,6 +18,8 @@ class Xcodeproj::Project::Object::PBXNativeTarget
         # Check target configuration file also
         isIOS = isIOS || getConfigAttributes(self)&.dig("SUPPORTED_PLATFORMS")&.include?("iphoneos")
         
+        # CHECK INCLUDES ALSO OMG WHY?! Defenitelly need to improve xcodeproj to resolve those settings properly. I'm out.
+        
         isFramework = symbol_type == :framework
         isShared = framework_shared_schemes.include?(name)
         
@@ -24,7 +31,7 @@ end
 def getConfigAttributes(framework_target)
     default_configuration = framework_target.build_configuration_list[framework_target.build_configuration_list.default_configuration_name]
     base_configuration_reference = default_configuration.base_configuration_reference
-    if !base_configuration_reference&.real_path.to_s.empty?
+    if !base_configuration_reference&.real_path.to_s.empty? && File.file?(base_configuration_reference.real_path)
         config = Xcodeproj::Config.new(base_configuration_reference.real_path)
         config.attributes
     else
@@ -34,7 +41,13 @@ end
 
 # Returns shared iOS framework names
 def getSharediOSFrameworkNames(framework_name)
+    # TODO: Need to handle multiple projects
     framework_project_path = getCarthageProjectPath(framework_name)
+    
+    if framework_project_path.to_s.empty?
+        return nil
+    end
+    
     framework_project = Xcodeproj::Project.open(framework_project_path)
     framework_shared_schemes = Xcodeproj::Project.schemes(framework_project_path)
     framework_targets = framework_project.native_targets.select { |framework_target| framework_target.iOSSharedFramework?(framework_shared_schemes) }
@@ -51,6 +64,8 @@ def getSharediOSFrameworkNames(framework_name)
         elsif framework_name == '$(TARGET_NAME:c99extidentifier)'
             # TODO: Add full support for 'c99extidentifier' if needed
             framework_name = framework_target.name
+        elsif framework_name == '$(PROJECT_NAME)'
+            framework_name = File.basename(framework_project_path, ".*")
         end
         
         framework_name
@@ -77,6 +92,8 @@ def getCarthageProjectPath(framework_name)
             return framework_project_path
         end
     }
+    
+    return nil
 end
 
 # Colorization

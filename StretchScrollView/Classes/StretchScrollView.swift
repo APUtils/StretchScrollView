@@ -8,11 +8,7 @@
 
 import UIKit
 
-#if COCOAPODS
-import APExtensions
-#else
-import APExtensionsViewState
-#endif
+import ViewState
 
 //-----------------------------------------------------------------------------
 // MARK: - Constants

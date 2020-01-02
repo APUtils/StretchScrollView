@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1E433957604612529AE9C358 /* APExtensionsViewState.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F98D752BE149C213DC2CF86E /* APExtensionsViewState.framework */; };
+		0D33EA6623BEB53B00DE5C50 /* ViewState.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D33EA6523BEB53B00DE5C50 /* ViewState.framework */; };
 		B02C3D7321EC9AC8008DE799 /* UIView+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02C3D6F21EC9AC8008DE799 /* UIView+Utils.swift */; };
 		B02C3D7521EC9AC8008DE799 /* UIViewController+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02C3D7121EC9AC8008DE799 /* UIViewController+Utils.swift */; };
 		B02C3D7621EC9AC8008DE799 /* StretchScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02C3D7221EC9AC8008DE799 /* StretchScrollView.swift */; };
@@ -18,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0D33EA6523BEB53B00DE5C50 /* ViewState.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ViewState.framework; path = Carthage/Build/iOS/ViewState.framework; sourceTree = "<group>"; };
 		0FE4C5426D9336ED3448EF31 /* carthageUpdate.command */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; name = carthageUpdate.command; path = Scripts/Carthage/carthageUpdate.command; sourceTree = "<group>"; };
 		17095833951C17C99BC3BEED /* carthageRemove.command */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; name = carthageRemove.command; path = Scripts/Carthage/carthageRemove.command; sourceTree = "<group>"; };
 		B02C3D6F21EC9AC8008DE799 /* UIView+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Utils.swift"; sourceTree = "<group>"; };
@@ -28,7 +29,6 @@
 		B0C6EAFE21E8D467004664FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B0F1C4A421ED2FEE0032088C /* CGRect+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGRect+Utils.swift"; sourceTree = "<group>"; };
 		B0F1C4A821ED30580032088C /* UIScrollView+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIScrollView+Utils.swift"; sourceTree = "<group>"; };
-		F98D752BE149C213DC2CF86E /* APExtensionsViewState.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = APExtensionsViewState.framework; path = Carthage/Build/iOS/APExtensionsViewState.framework; sourceTree = "<group>"; };
 		FB3A6DB403898FAF9B36C60C /* carthageAdd.command */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; name = carthageAdd.command; path = Scripts/Carthage/carthageAdd.command; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -37,7 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1E433957604612529AE9C358 /* APExtensionsViewState.framework in Frameworks */,
+				0D33EA6623BEB53B00DE5C50 /* ViewState.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -87,7 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				E4B03C2B739E2F10FF5C1301 /* _Carthage */,
-				F98D752BE149C213DC2CF86E /* APExtensionsViewState.framework */,
+				0D33EA6523BEB53B00DE5C50 /* ViewState.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -125,7 +125,6 @@
 				B0C6EAF621E8D467004664FF /* Sources */,
 				B0C6EAF721E8D467004664FF /* Frameworks */,
 				B0C6EAF821E8D467004664FF /* Resources */,
-				760648ED1CB2FBC1E6022A67 /* Carthage Copy */,
 			);
 			buildRules = (
 			);
@@ -176,29 +175,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		760648ED1CB2FBC1E6022A67 /* Carthage Copy */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/APExtensionsViewState.framework",
-			);
-			name = "Carthage Copy";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/APExtensionsViewState.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		B0C6EAF621E8D467004664FF /* Sources */ = {
@@ -353,7 +329,7 @@
 				);
 				INFOPLIST_FILE = StretchScrollView/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -382,7 +358,7 @@
 				);
 				INFOPLIST_FILE = StretchScrollView/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
