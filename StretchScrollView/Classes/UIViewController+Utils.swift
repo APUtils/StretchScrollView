@@ -12,7 +12,7 @@ import UIKit
 extension UIViewController {
     /// Previous view controller in navigation stack
     var _previousViewController: UIViewController? {
-        guard let navigationViewControllers = navigationController?.viewControllers, let currentVcIndex = navigationViewControllers.index(of: self) else { return nil }
+        guard let navigationViewControllers = navigationController?.viewControllers, let currentVcIndex = navigationViewControllers.firstIndex(of: self) else { return nil }
         
         let previousViewControllerIndex = currentVcIndex - 1
         if previousViewControllerIndex >= 0 {

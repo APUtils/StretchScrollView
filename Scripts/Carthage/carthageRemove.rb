@@ -26,6 +26,7 @@ def removeFramework(project, framework_name)
     end
     
     # Removing from Frameworks folder and sorting
+    framework_reference.build_files.each { |file| file.remove_from_project }
     framework_reference&.remove_from_project
     frameworks_reference.sort
 end
