@@ -28,9 +28,6 @@ fi
 
 set -o pipefail && xcodebuild -workspace "Example/StretchScrollView.xcworkspace" -sdk iphonesimulator -scheme "StretchScrollView-Example" -destination "platform=iOS Simulator,id=${simulator_id}" test | xcpretty
 
-echo -e "\Generating documentation..."
-. "updateDocs.command"
-
 echo ""
 echo "SUCCESS!"
 echo ""
