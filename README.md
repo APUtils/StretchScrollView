@@ -29,10 +29,10 @@ Please check [official guide](https://github.com/Carthage/Carthage#if-youre-buil
 Cartfile:
 
 ```
-github "APUtils/StretchScrollView" ~> 4.3
+github "APUtils/StretchScrollView" ~> 5.0
 ```
 
-Then add both `StretchScrollView` and `APExtensionsViewState` frameworks to your project.
+Then add both `StretchScrollView` and `ViewState` frameworks to your project. Remove `APExtensionsViewState` dependency if you previously had it.
 
 #### CocoaPods
 
@@ -40,7 +40,7 @@ StretchScrollView is available through [CocoaPods](http://cocoapods.org). To ins
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'StretchScrollView', '~> 4.3'
+pod 'StretchScrollView', '~> 5.0'
 ```
 
 ## Configuration
