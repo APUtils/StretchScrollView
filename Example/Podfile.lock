@@ -16,16 +16,16 @@ PODS:
   - FBSnapshotTestCase/Core (2.1.4)
   - FBSnapshotTestCase/SwiftSupport (2.1.4):
     - FBSnapshotTestCase/Core
-  - iOSSnapshotTestCase (2.2.0):
-    - iOSSnapshotTestCase/SwiftSupport (= 2.2.0)
-  - iOSSnapshotTestCase/Core (2.2.0)
-  - iOSSnapshotTestCase/SwiftSupport (2.2.0):
+  - iOSSnapshotTestCase (5.0.2):
+    - iOSSnapshotTestCase/SwiftSupport (= 5.0.2)
+  - iOSSnapshotTestCase/Core (5.0.2)
+  - iOSSnapshotTestCase/SwiftSupport (5.0.2):
     - iOSSnapshotTestCase/Core
   - Nimble (7.3.4)
-  - Nimble-Snapshots (6.4.1):
-    - Nimble-Snapshots/Core (= 6.4.1)
-  - Nimble-Snapshots/Core (6.4.1):
-    - iOSSnapshotTestCase (~> 2.0)
+  - Nimble-Snapshots (6.9.1):
+    - Nimble-Snapshots/Core (= 6.9.1)
+  - Nimble-Snapshots/Core (6.9.1):
+    - iOSSnapshotTestCase (~> 5.0)
     - Nimble (~> 7.0)
   - Quick (2.2.0)
   - StretchScrollView (4.3.0):
@@ -60,9 +60,9 @@ SPEC CHECKSUMS:
   APExtensions: 9a7a7b6ff5b9785b245962de89fbbdaf4c10f10e
   BaseClasses: a3c2cace2997e53612041c690528f945cb40fd37
   FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
-  iOSSnapshotTestCase: 415bd84f9dbba4ff45fede49d800bc7332fbedac
+  iOSSnapshotTestCase: 2d51aa06775e95cecb0a1fb9c5c159ccd1dd4596
   Nimble: 051e3d8912d40138fa5591c78594f95fb172af37
-  Nimble-Snapshots: 438fb1a6fa3c655e246fc9ac375f6cd2964d759a
+  Nimble-Snapshots: bbd1ab264bacc24a9ce24a8363bc05aac783aeb0
   Quick: 7fb19e13be07b5dfb3b90d4f9824c855a11af40e
   StretchScrollView: 97c3bdc3a62d388130488b81ce2a721d89ddd851
   ViewState: 78aa77483e74e592c22e841619b853bc686843be
