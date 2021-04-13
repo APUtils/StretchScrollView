@@ -1,6 +1,7 @@
 # StretchScrollView
 
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+[![Swift Package Manager compatible](https://img.shields.io/badge/Swift%20Package%20Manager-compatible-brightgreen.svg)](https://github.com/apple/swift-package-manager)
 [![Version](https://img.shields.io/cocoapods/v/StretchScrollView.svg?style=flat)](http://cocoapods.org/pods/StretchScrollView)
 [![License](https://img.shields.io/cocoapods/l/StretchScrollView.svg?style=flat)](http://cocoapods.org/pods/StretchScrollView)
 [![Platform](https://img.shields.io/cocoapods/p/StretchScrollView.svg?style=flat)](http://cocoapods.org/pods/StretchScrollView)
@@ -29,7 +30,7 @@ Please check [official guide](https://github.com/Carthage/Carthage#if-youre-buil
 Cartfile:
 
 ```
-github "APUtils/StretchScrollView" ~> 5.0
+github "APUtils/StretchScrollView" ~> 6.0
 ```
 
 Then add both `StretchScrollView` and `ViewState` frameworks to your project. Remove `APExtensionsViewState` dependency if you previously had it.
@@ -40,7 +41,7 @@ StretchScrollView is available through [CocoaPods](http://cocoapods.org). To ins
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'StretchScrollView', '~> 5.0'
+pod 'StretchScrollView', '~> 6.0'
 ```
 
 ## Configuration

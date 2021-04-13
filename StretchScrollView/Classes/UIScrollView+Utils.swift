@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import UIKit
 
 extension UIScrollView {
     /// Bounds center relative to content size

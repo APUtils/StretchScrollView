@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import UIKit
 
 extension CGRect {
     /// Center point

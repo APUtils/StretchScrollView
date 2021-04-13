@@ -8,6 +8,10 @@ cd "$base_dir"
 
 . "utils.sh"
 
+# Font Constants
+bold_text=$(tput bold)
+normal_text=$(tput sgr0)
+
 cd ..
 cd ..
 

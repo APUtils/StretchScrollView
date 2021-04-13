@@ -1,16 +1,13 @@
 PODS:
-  - APExtensions (7.0.1):
-    - APExtensions/Abstractions (= 7.0.1)
-    - APExtensions/Core (= 7.0.1)
-    - APExtensions/Storyboard (= 7.0.1)
-    - APExtensions/ViewConfiguration (= 7.0.1)
-    - APExtensions/ViewState (= 7.0.1)
-  - APExtensions/Abstractions (7.0.1)
-  - APExtensions/Core (7.0.1)
-  - APExtensions/Storyboard (7.0.1)
-  - APExtensions/ViewConfiguration (7.0.1)
-  - APExtensions/ViewState (7.0.1)
-  - BaseClasses (3.1.0)
+  - APExtensions (10.0.0):
+    - APExtensions/Core (= 10.0.0)
+    - APExtensions/Storyboard (= 10.0.0)
+    - APExtensions/ViewConfiguration (= 10.0.0)
+  - APExtensions/Core (10.0.0):
+    - LogsManager/RoutableLogger (>= 9.1.5)
+  - APExtensions/Storyboard (10.0.0)
+  - APExtensions/ViewConfiguration (10.0.0)
+  - BaseClasses (4.0.0)
   - FBSnapshotTestCase (2.1.4):
     - FBSnapshotTestCase/SwiftSupport (= 2.1.4)
   - FBSnapshotTestCase/Core (2.1.4)
@@ -21,20 +18,21 @@ PODS:
   - iOSSnapshotTestCase/Core (5.0.2)
   - iOSSnapshotTestCase/SwiftSupport (5.0.2):
     - iOSSnapshotTestCase/Core
+  - LogsManager/RoutableLogger (9.1.5)
   - Nimble (7.3.4)
   - Nimble-Snapshots (6.9.1):
     - Nimble-Snapshots/Core (= 6.9.1)
   - Nimble-Snapshots/Core (6.9.1):
     - iOSSnapshotTestCase (~> 5.0)
     - Nimble (~> 7.0)
-  - Quick (2.2.0)
-  - StretchScrollView (4.3.0):
+  - Quick (3.1.2)
+  - StretchScrollView (6.0.0):
     - ViewState (>= 1.0.0)
-  - ViewState (1.0.0)
+  - ViewState (1.2.1)
 
 DEPENDENCIES:
-  - APExtensions
-  - BaseClasses
+  - APExtensions (from `https://github.com/APUtils/APExtensions`)
+  - BaseClasses (from `https://github.com/APUtils/BaseClasses`)
   - FBSnapshotTestCase
   - Nimble
   - Nimble-Snapshots
@@ -43,30 +41,42 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
-    - APExtensions
-    - BaseClasses
     - FBSnapshotTestCase
     - iOSSnapshotTestCase
+    - LogsManager
     - Nimble
     - Nimble-Snapshots
     - Quick
     - ViewState
 
 EXTERNAL SOURCES:
+  APExtensions:
+    :git: https://github.com/APUtils/APExtensions
+  BaseClasses:
+    :git: https://github.com/APUtils/BaseClasses
   StretchScrollView:
     :path: "../"
 
+CHECKOUT OPTIONS:
+  APExtensions:
+    :commit: ae784925e948a39dbc9d521e538a32bef9544936
+    :git: https://github.com/APUtils/APExtensions
+  BaseClasses:
+    :commit: b60c248a7d4ece3db2ebe0e38e97376c84f4e94c
+    :git: https://github.com/APUtils/BaseClasses
+
 SPEC CHECKSUMS:
-  APExtensions: 9a7a7b6ff5b9785b245962de89fbbdaf4c10f10e
-  BaseClasses: a3c2cace2997e53612041c690528f945cb40fd37
+  APExtensions: b46cab78fe5d291e1157838fd78962a886e627df
+  BaseClasses: e75a0ee46c79256b63b6ca207b5918720e54d524
   FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
   iOSSnapshotTestCase: 2d51aa06775e95cecb0a1fb9c5c159ccd1dd4596
+  LogsManager: e821cea87e608e96cf39a68009d830579098a2cb
   Nimble: 051e3d8912d40138fa5591c78594f95fb172af37
   Nimble-Snapshots: bbd1ab264bacc24a9ce24a8363bc05aac783aeb0
-  Quick: 7fb19e13be07b5dfb3b90d4f9824c855a11af40e
-  StretchScrollView: 97c3bdc3a62d388130488b81ce2a721d89ddd851
-  ViewState: 78aa77483e74e592c22e841619b853bc686843be
+  Quick: 60f0ea3b8e0cfc0df3259a5c06a238ad8b3c46e0
+  StretchScrollView: 715aacf8437aa3598cafbee671116663bcee27d8
+  ViewState: 2875f1b9e168a05ba14d3df1884e29333b65fe36
 
-PODFILE CHECKSUM: 9b5e15a854f7aae25048cd3030bee41fc3a9f87a
+PODFILE CHECKSUM: cbe5d31b29b237319f2115a0173ee668fdcbc936
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.10.1

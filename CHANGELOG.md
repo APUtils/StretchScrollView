@@ -3,6 +3,17 @@ All notable changes to this project will be documented in this file.
 `StretchScrollView` adheres to [Semantic Versioning](http://semver.org/).
 
 
+## [6.0.0](https://github.com/APUtils/StretchScrollView/releases/tag/6.0.0)
+Released on 04/13/2021.
+
+#### Added
+- SPM support
+- tvOS support
+
+#### Changed
+- iOS 9.0 min
+
+
 ## [5.0.0](https://github.com/APUtils/StretchScrollView/releases/tag/5.0.0)
 Released on 01/03/2020.
 

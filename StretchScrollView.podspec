@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'StretchScrollView'
-  s.version          = '5.0.0'
+  s.version          = '6.0.0'
   s.summary          = 'ScrollView that allows to stretch it`s image'
 
 # This description is used to generate tags and improve search results.
@@ -28,7 +28,8 @@ StretchScrollView provides functionality to enlarge title image and hide overlay
   s.source           = { :git => 'https://github.com/APUtils/StretchScrollView.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '9.0'
+  s.tvos.deployment_target = '9.0'
   s.swift_versions = ['5.1']
 
   s.source_files = 'StretchScrollView/Classes/**/*'

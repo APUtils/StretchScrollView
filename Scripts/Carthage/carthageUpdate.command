@@ -12,10 +12,13 @@ set -e
 base_dir=$(dirname "$0")
 cd "$base_dir"
 
-. "utils.sh"
+# includes
+. ./utils.sh
 
 cd ..
 cd ..
+
+applyXcode12Workaround
 
 # Try one level up if didn't find Cartfile.
 if [ ! -f "Cartfile" ]; then
@@ -40,9 +43,12 @@ fi
 
 # Update framework(s)
 echo "Synchronizing Carthage dependencies..."
-carthage update ${framework_name} --platform iOS --cache-builds --use-ssh
+carthage update ${framework_name} --platform iOS,tvOS --cache-builds
 echo ""
 
 # Update md5 check sum
 cartSum=`{ cat Cartfile.resolved; xcrun swift -version; } | md5`
-echo $cartSum > Carthage/cartSum.txt
+cart_sum_file='Carthage/cartSum.txt'
+if [ -f "${cart_sum_file}" ]; then
+    echo "${cartSum}" > "${cart_sum_file}"
+fi
