@@ -7,24 +7,19 @@ PODS:
     - RoutableLogger
   - APExtensions/Storyboard (10.1.6)
   - APExtensions/ViewConfiguration (10.1.6)
-  - BaseClasses (5.0.0):
+  - BaseClasses (6.0.0):
     - RoutableLogger (>= 9.1.6)
-  - FBSnapshotTestCase (2.1.4):
-    - FBSnapshotTestCase/SwiftSupport (= 2.1.4)
-  - FBSnapshotTestCase/Core (2.1.4)
-  - FBSnapshotTestCase/SwiftSupport (2.1.4):
-    - FBSnapshotTestCase/Core
-  - iOSSnapshotTestCase (5.0.2):
-    - iOSSnapshotTestCase/SwiftSupport (= 5.0.2)
-  - iOSSnapshotTestCase/Core (5.0.2)
-  - iOSSnapshotTestCase/SwiftSupport (5.0.2):
+  - iOSSnapshotTestCase (8.0.0):
+    - iOSSnapshotTestCase/SwiftSupport (= 8.0.0)
+  - iOSSnapshotTestCase/Core (8.0.0)
+  - iOSSnapshotTestCase/SwiftSupport (8.0.0):
     - iOSSnapshotTestCase/Core
-  - Nimble (7.3.4)
-  - Nimble-Snapshots (6.9.1):
-    - Nimble-Snapshots/Core (= 6.9.1)
-  - Nimble-Snapshots/Core (6.9.1):
-    - iOSSnapshotTestCase (~> 5.0)
-    - Nimble (~> 7.0)
+  - Nimble (9.2.1)
+  - Nimble-Snapshots (9.3.0):
+    - Nimble-Snapshots/Core (= 9.3.0)
+  - Nimble-Snapshots/Core (9.3.0):
+    - iOSSnapshotTestCase (~> 8.0)
+    - Nimble
   - Quick (4.0.0)
   - RoutableLogger (9.1.12)
   - StretchScrollView (6.0.0):
@@ -35,7 +30,6 @@ PODS:
 DEPENDENCIES:
   - APExtensions (from `https://github.com/APUtils/APExtensions`)
   - BaseClasses (from `https://github.com/APUtils/BaseClasses`)
-  - FBSnapshotTestCase
   - Nimble
   - Nimble-Snapshots
   - Quick
@@ -43,7 +37,6 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
-    - FBSnapshotTestCase
     - iOSSnapshotTestCase
     - Nimble
     - Nimble-Snapshots
@@ -64,21 +57,20 @@ CHECKOUT OPTIONS:
     :commit: 085a41c04626378c75bc5d4887784121465adc9c
     :git: https://github.com/APUtils/APExtensions
   BaseClasses:
-    :commit: c48b33bed4bab0a2adc3e7e278822b024c2254cf
+    :commit: 265de446def32f3f84424d81d05ff1a2aa01bb4e
     :git: https://github.com/APUtils/BaseClasses
 
 SPEC CHECKSUMS:
   APExtensions: 63f9f31f09a8b43a52c2207774568756e3bd489f
-  BaseClasses: 0e65068bc5f776b9a26ba38859a79a34620eca6c
-  FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
-  iOSSnapshotTestCase: 2d51aa06775e95cecb0a1fb9c5c159ccd1dd4596
-  Nimble: 051e3d8912d40138fa5591c78594f95fb172af37
-  Nimble-Snapshots: bbd1ab264bacc24a9ce24a8363bc05aac783aeb0
+  BaseClasses: c9c3c7532dedbc7bf839917fbbff8234ede087b2
+  iOSSnapshotTestCase: a670511f9ee3829c2b9c23e6e68f315fd7b6790f
+  Nimble: e7e615c0335ee4bf5b0d786685451e62746117d5
+  Nimble-Snapshots: 97270cd48f0e6eebd6c80ccf7dd35d4e57fb9997
   Quick: 6473349e43b9271a8d43839d9ba1c442ed1b7ac4
   RoutableLogger: 9ad367e9a79df59c3cf5a1707ba9598ffbae8784
   StretchScrollView: 715aacf8437aa3598cafbee671116663bcee27d8
   ViewState: d6492d0434d2ee6013c270c1431dbe73cc895b75
 
-PODFILE CHECKSUM: f2c23e9b944b8a53a25c6d8564d7abb5ba213866
+PODFILE CHECKSUM: 08abfb075b194aebd6d045f21839a742e4a002dd
 
 COCOAPODS: 1.11.2

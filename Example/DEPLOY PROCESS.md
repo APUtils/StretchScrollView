@@ -1,8 +1,9 @@
-- Assure `CarthageSupport/StretchScrollView.xcodeproj` and `Example/StretchScrollView.xcworkspace` have all dependencies added.
+- Assure `CarthageSupport/StretchScrollView.xcodeproj` have all dependencies added.
+- Change version in podspec
 - Run `podUpdate.command`
 - Run `carthageUpdate.command`
+- Run `swift package update`
 - Run `checkBuild.command`
-- Change version in podspec
 - Update CHANGELOG.md
 - Update README.md with new version if needed
 - Push changes in git

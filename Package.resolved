@@ -2,12 +2,21 @@
   "object": {
     "pins": [
       {
+        "package": "RoutableLogger",
+        "repositoryURL": "https://github.com/APUtils/LogsManager.git",
+        "state": {
+          "branch": null,
+          "revision": "3a3b22fbfb5a2af934113c21001746c229bf28f2",
+          "version": "9.1.20"
+        }
+      },
+      {
         "package": "ViewState",
         "repositoryURL": "https://github.com/APUtils/ViewState.git",
         "state": {
           "branch": null,
-          "revision": "f59044bee010f67ad17dad5af553433d7806a00f",
-          "version": "1.2.2"
+          "revision": "b85537ef5bbae93a4bf5c423b84064c2d8aaf8c9",
+          "version": "1.2.5"
         }
       }
     ]

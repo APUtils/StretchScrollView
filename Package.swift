@@ -15,7 +15,7 @@ let package = Package(
             targets: ["StretchScrollView"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/APUtils/ViewState.git", .upToNextMajor(from: "1.2.1")),
+        .package(url: "https://github.com/APUtils/ViewState.git", .upToNextMajor(from: "1.2.3")),
     ],
     targets: [
         .target(

@@ -33,6 +33,8 @@ Cartfile:
 github "APUtils/StretchScrollView" ~> 6.0
 ```
 
+Install command: `carthage bootstrap --use-xcframeworks`
+
 Then add both `StretchScrollView` and `ViewState` frameworks to your project. Remove `APExtensionsViewState` dependency if you previously had it.
 
 #### CocoaPods
@@ -42,6 +44,18 @@ it, simply add the following line to your Podfile:
 
 ```ruby
 pod 'StretchScrollView', '~> 6.0'
+```
+
+#### Swift Package Manager
+
+The Swift Package Manager is a tool for automating the distribution of Swift code and is integrated into the swift compiler.
+
+Once you have your Swift package set up, adding `StretchScrollView` as a dependency is as easy as adding it to the dependencies value of your `Package.swift`.
+
+```swift
+dependencies: [
+    .package(url: "https://github.com/APUtils/StretchScrollView.git", .upToNextMajor(from: "6.0.0"))
+]
 ```
 
 ## Configuration
