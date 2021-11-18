@@ -6,8 +6,9 @@
 set -e
 
 # Assume scripts are placed in /Scripts/Carthage dir
-base_dir=$(dirname "$0")
-cd "$base_dir"
+_script_call_path="${BASH_SOURCE%/*}"
+if [[ ! -d "${_script_call_path}" ]]; then _script_call_path=$(dirname "$0"); fi
+cd "${_script_call_path}"
 
 # includes
 . ./utils.sh
@@ -45,7 +46,7 @@ if [ "$prevSum" != "$cartSum" ] || [ ! -d "Carthage/Build/iOS" ]; then
     rm "$cart_sum_file" 2> /dev/null || :
 
     # Install needed frameworks.
-    carthage bootstrap --platform iOS,tvOS --cache-builds
+    carthage bootstrap --use-xcframeworks --platform iOS,tvOS --cache-builds
 
     # Update checksum file
     cartSum=`{ cat Cartfile.resolved; xcrun swift -version; } | md5`

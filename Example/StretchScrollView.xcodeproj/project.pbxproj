@@ -268,7 +268,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 1240;
+				LastUpgradeCheck = 1310;
 				ORGANIZATIONNAME = CocoaPods;
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
@@ -399,7 +399,7 @@
 				"${PODS_ROOT}/Target Support Files/Pods-StretchScrollView_Example/Pods-StretchScrollView_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/APExtensions/APExtensions.framework",
 				"${BUILT_PRODUCTS_DIR}/BaseClasses/BaseClasses.framework",
-				"${BUILT_PRODUCTS_DIR}/LogsManager/LogsManager.framework",
+				"${BUILT_PRODUCTS_DIR}/RoutableLogger/RoutableLogger.framework",
 				"${BUILT_PRODUCTS_DIR}/StretchScrollView/StretchScrollView.framework",
 				"${BUILT_PRODUCTS_DIR}/ViewState/ViewState.framework",
 			);
@@ -407,7 +407,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/APExtensions.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BaseClasses.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LogsManager.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RoutableLogger.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/StretchScrollView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ViewState.framework",
 			);
